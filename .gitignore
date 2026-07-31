@@ -1,11 +1,21 @@
-node_modules/
-.next/
-out/
-build/
+# Virtual Environments
+venv/
+env/
 .env
-.env.local
-.venv
+
+# Python Caches
 __pycache__/
 *.pyc
 .pytest_cache/
-.coverage
+.mypy_cache/
+
+# IDE & Editor Files
+.idea/
+.vscode/
+.DS_Store
+
+# Machine Learning Files
+ml/data/
+backend/app/ml_models/
+*.pkl
+*.joblib
