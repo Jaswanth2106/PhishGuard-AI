@@ -20,7 +20,7 @@ class Settings(BaseSettings):
         raise ValueError(v)
 
     SUPABASE_URL: str = ""
-    SUPABASE_KEY: str = ""
+    SUPABASE_SERVICE_ROLE_KEY: str = ""
 
     model_config = SettingsConfigDict(case_sensitive=True, env_file=".env")
 
