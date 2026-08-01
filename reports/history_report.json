@@ -1,0 +1,21 @@
+{
+  "phase": "5.3",
+  "name": "Email Scan History",
+  "status": "complete",
+  "database_migrations": [
+    "supabase/migrations/20260731000000_create_scans_table.sql"
+  ],
+  "components_added": [
+    "frontend/src/app/dashboard/history/page.tsx"
+  ],
+  "components_modified": [
+    "frontend/src/app/dashboard/analyse/page.tsx"
+  ],
+  "features": [
+    "Database schema for scans",
+    "History table UI",
+    "Search filtering",
+    "Delete scan record",
+    "Auto-insert scans from /analyse page"
+  ]
+}

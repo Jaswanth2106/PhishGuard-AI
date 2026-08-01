@@ -1,0 +1,59 @@
+{
+    "phase":  "4.2",
+    "name":  "Frontend UX \u0026 Explainability",
+    "generated_at":  "2026-07-31T14:16:45.2065314Z",
+    "status":  "completed",
+    "files_modified":  [
+                           "frontend/src/app/dashboard/analyse/page.tsx",
+                           "frontend/src/lib/backend-api.ts",
+                           "frontend_ux_report.json"
+                       ],
+    "features_added":  [
+                           "Improved production result card with prediction, confidence, probability-like score, top signals, and explanation sections.",
+                           "Confidence visualization with accessible progress bar, percentage text, and green/yellow/red color coding.",
+                           "Probability-like score progress indicator.",
+                           "Expandable Technical Details section with model version, prediction timestamp, request ID, backend version, and API response time.",
+                           "Copy-to-clipboard button for prediction summaries.",
+                           "Analyze Another Email reset button with focus restoration to subject input.",
+                           "Improved loading animation with status text and animated progress treatment.",
+                           "Distinct error treatments for timeout, network failure, backend unavailable, invalid request, and unknown failures.",
+                           "Retry action retained for failed predictions and duplicate submissions disabled during analysis."
+                       ],
+    "api_metadata":  {
+                         "endpoint":  "POST /predict",
+                         "backend_version_endpoint":  "GET /version",
+                         "request_id_source":  "x-request-id response header when exposed by backend/CORS or backend error payload when present",
+                         "response_time_source":  "client-side performance measurement around the /predict request",
+                         "prediction_timestamp_source":  "client-side timestamp captured after /predict response"
+                     },
+    "accessibility_checks":  [
+                                 "Analyze, retry, copy, and reset controls are keyboard reachable native buttons.",
+                                 "Form inputs have labels, aria-invalid, and aria-describedby for validation messages.",
+                                 "Validation and copy failure messages use role=alert where appropriate.",
+                                 "Result aside uses aria-live and aria-busy for screen reader updates.",
+                                 "Loading indicator exposes role=status and an accessible label.",
+                                 "Progress bars include role=progressbar with aria-valuemin, aria-valuemax, and aria-valuenow.",
+                                 "Decorative icons are marked aria-hidden.",
+                                 "Expandable technical details uses native details/summary keyboard behavior.",
+                                 "Color coding is paired with text labels and percentages rather than relying on color alone."
+                             ],
+    "responsive_verification":  [
+                                    "Desktop: existing two-column dashboard grid preserved for input and result panels.",
+                                    "Tablet: result metric cards wrap with sm:grid-cols-2 while preserving readable spacing.",
+                                    "Mobile: form actions, error actions, and result actions stack vertically; long request IDs break safely.",
+                                    "Build output prerendered /dashboard/analyse successfully, confirming responsive page code compiles in production."
+                                ],
+    "verification":  {
+                         "npm_run_lint":  "passed",
+                         "npm_run_build":  "passed"
+                     },
+    "constraints_observed":  [
+                                 "ML model was not modified or retrained.",
+                                 "Backend prediction logic and backend APIs were not modified.",
+                                 "Authentication and Supabase were not modified.",
+                                 "Existing UI theme was preserved."
+                             ],
+    "remaining_issues":  [
+
+                         ]
+}

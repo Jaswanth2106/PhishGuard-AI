@@ -1,0 +1,69 @@
+{
+    "Winning_Model": "Linear SVM",
+    "Rationale": "LGBM F1: 0.9801, Best Simple (Linear SVM) F1: 0.9875. Linear SVM actually outperformed LightGBM, winning decisively on metrics, training time, and inference speed.",
+    "Expected_Production_Latency_ms": 0.0121615510330623,
+    "Expected_RAM_Usage_MB": 0.0,
+    "Model_Size_MB": 0.3823204040527344,
+    "Results": [
+        {
+            "Model": "Linear SVM",
+            "Accuracy": 0.9907578558225508,
+            "Precision": 0.99,
+            "Recall": 0.9850746268656716,
+            "F1": 0.9875311720698254,
+            "ROC_AUC": 0.9998390400936494,
+            "PR_AUC": 0.9997321893703796,
+            "CV_F1_Mean": 0.983606005646588,
+            "CV_F1_Std": 0.0041062241992934,
+            "Train_Time_s": 10.72727084159851,
+            "Inf_Time_ms_per_email": 0.0121615510330623,
+            "Peak_RAM_MB": 0,
+            "Model_Size_MB": 0.3823204040527344
+        },
+        {
+            "Model": "LightGBM",
+            "Accuracy": 0.9852125693160814,
+            "Precision": 0.9800995024875622,
+            "Recall": 0.9800995024875622,
+            "F1": 0.9800995024875622,
+            "ROC_AUC": 0.999078138718174,
+            "PR_AUC": 0.9984891291101734,
+            "CV_F1_Mean": 0.9722020222673584,
+            "CV_F1_Std": 0.0071036224016086,
+            "Train_Time_s": 90.1489713191986,
+            "Inf_Time_ms_per_email": 0.0265464324387076,
+            "Peak_RAM_MB": 0,
+            "Model_Size_MB": 1.7007789611816406
+        },
+        {
+            "Model": "Logistic Regression",
+            "Accuracy": 0.9815157116451017,
+            "Precision": 0.9847715736040608,
+            "Recall": 0.965174129353234,
+            "F1": 0.9748743718592964,
+            "ROC_AUC": 0.9982148083113842,
+            "PR_AUC": 0.9973983560551412,
+            "CV_F1_Mean": 0.968254798451246,
+            "CV_F1_Std": 0.0057674610919303,
+            "Train_Time_s": 1.8722987174987795,
+            "Inf_Time_ms_per_email": 0.0071675411654488,
+            "Peak_RAM_MB": 0,
+            "Model_Size_MB": 0.3824453353881836
+        },
+        {
+            "Model": "Naive Bayes",
+            "Accuracy": 0.9759704251386322,
+            "Precision": 0.9563106796116504,
+            "Recall": 0.9800995024875622,
+            "F1": 0.968058968058968,
+            "ROC_AUC": 0.995785776997366,
+            "PR_AUC": 0.991880693548861,
+            "CV_F1_Mean": 0.9623743789875928,
+            "CV_F1_Std": 0.0102634771917746,
+            "Train_Time_s": 0.0843133926391601,
+            "Inf_Time_ms_per_email": 0.0176826378334031,
+            "Peak_RAM_MB": 0,
+            "Model_Size_MB": 1.5272436141967771
+        }
+    ]
+}

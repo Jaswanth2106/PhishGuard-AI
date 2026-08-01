@@ -1,0 +1,34 @@
+[
+    {
+        "dataset": "Enron Email Corpus (Sampled)",
+        "source_url": "http://www2.aueb.gr/users/ion/data/enron-spam/preprocessed/enron1.tar.gz",
+        "license": "Public Domain",
+        "downloaded_size_bytes": 1802573,
+        "extraction_status": "SUCCESS",
+        "failures": []
+    },
+    {
+        "dataset": "SpamAssassin Public Corpus",
+        "source_url": "https://spamassassin.apache.org/old/publiccorpus/20030228_spam.tar.bz2",
+        "license": "Apache 2.0",
+        "downloaded_size_bytes": 1183768,
+        "extraction_status": "SUCCESS",
+        "failures": []
+    },
+    {
+        "dataset": "Nazario Phishing Corpus",
+        "source_url": "https://monkey.org/~jose/phishing/phishing0.mbox",
+        "license": "Public Domain",
+        "downloaded_size_bytes": 3119972,
+        "extraction_status": "NOT_REQUIRED",
+        "failures": []
+    },
+    {
+        "dataset": "Modern Phishing Emails (GitHub)",
+        "source_url": "https://raw.githubusercontent.com/mohitgupta-omg/Kaggle-SMS-Spam-Collection-Dataset-/master/spam.csv",
+        "license": "MIT",
+        "downloaded_size_bytes": 503663,
+        "extraction_status": "NOT_REQUIRED",
+        "failures": []
+    }
+]

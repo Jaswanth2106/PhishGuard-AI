@@ -1,0 +1,58 @@
+[
+    {
+        "filename": "00217.43b4ef3d9c56cf42be9c37b546a19e78",
+        "dataset": "spamassassin",
+        "failure_reason": "unsupported encoding (LookupError: unknown encoding: default_charset)",
+        "recoverable": true,
+        "parser_improvement": "Catch LookupError during payload.decode() and fallback to decoding with 'utf-8' or 'latin-1' (with errors='ignore') when the email header specifies an invalid charset name."
+    },
+    {
+        "filename": "00319.a99dff9c010e00ec182ed5701556d330",
+        "dataset": "spamassassin",
+        "failure_reason": "unsupported encoding (LookupError: unknown encoding: unknown-8bit)",
+        "recoverable": true,
+        "parser_improvement": "Catch LookupError during payload.decode() and fallback to decoding with 'utf-8' or 'latin-1' (with errors='ignore') when the email header specifies an invalid charset name."
+    },
+    {
+        "filename": "00388.53eae0055e66fcb7194f9cca080fdefe",
+        "dataset": "spamassassin",
+        "failure_reason": "unsupported encoding (LookupError: unknown encoding: default)",
+        "recoverable": true,
+        "parser_improvement": "Catch LookupError during payload.decode() and fallback to decoding with 'utf-8' or 'latin-1' (with errors='ignore') when the email header specifies an invalid charset name."
+    },
+    {
+        "filename": "nazario_msg_47",
+        "dataset": "nazario",
+        "failure_reason": "unsupported encoding (LookupError: unknown encoding: iso-7163-9)",
+        "recoverable": true,
+        "parser_improvement": "Catch LookupError during payload.decode() and fallback to decoding with 'utf-8' or 'latin-1' (with errors='ignore') when the email header specifies an invalid charset name."
+    },
+    {
+        "filename": "nazario_msg_97",
+        "dataset": "nazario",
+        "failure_reason": "unsupported encoding (LookupError: unknown encoding: iso-4992-6)",
+        "recoverable": true,
+        "parser_improvement": "Catch LookupError during payload.decode() and fallback to decoding with 'utf-8' or 'latin-1' (with errors='ignore') when the email header specifies an invalid charset name."
+    },
+    {
+        "filename": "nazario_msg_114",
+        "dataset": "nazario",
+        "failure_reason": "unsupported encoding (LookupError: unknown encoding: iso-4847-5)",
+        "recoverable": true,
+        "parser_improvement": "Catch LookupError during payload.decode() and fallback to decoding with 'utf-8' or 'latin-1' (with errors='ignore') when the email header specifies an invalid charset name."
+    },
+    {
+        "filename": "nazario_msg_217",
+        "dataset": "nazario",
+        "failure_reason": "unsupported encoding (LookupError: unknown encoding: %charset)",
+        "recoverable": true,
+        "parser_improvement": "Catch LookupError during payload.decode() and fallback to decoding with 'utf-8' or 'latin-1' (with errors='ignore') when the email header specifies an invalid charset name."
+    },
+    {
+        "filename": "nazario_msg_244",
+        "dataset": "nazario",
+        "failure_reason": "unsupported encoding (LookupError: unknown encoding: iso-5413-4)",
+        "recoverable": true,
+        "parser_improvement": "Catch LookupError during payload.decode() and fallback to decoding with 'utf-8' or 'latin-1' (with errors='ignore') when the email header specifies an invalid charset name."
+    }
+]

@@ -1,0 +1,718 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PhishGuard AI API",
+    "summary": "Backend API for PhishGuard AI email threat classification.",
+    "description": "PhishGuard AI exposes a production Linear SVM email classifier with health, readiness, version, and prediction endpoints. The model is loaded once during application startup and each request receives a request ID for traceability.",
+    "contact": {
+      "name": "PhishGuard AI Backend"
+    },
+    "version": "3.2.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "status"
+        ],
+        "summary": "API welcome message",
+        "description": "Returns a simple welcome payload confirming that the API process is responding.",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RootResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "status"
+        ],
+        "summary": "Check API health",
+        "description": "Returns API status, model loaded state, API version, and the current server timestamp.",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ready": {
+      "get": {
+        "tags": [
+          "status"
+        ],
+        "summary": "Check model readiness",
+        "description": "Reports whether both the model and vectorizer are loaded and ready for prediction requests.",
+        "operationId": "ready_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadinessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/version": {
+      "get": {
+        "tags": [
+          "status"
+        ],
+        "summary": "Get API version",
+        "description": "Returns the configured API version, packaged model version, and runtime environment name.",
+        "operationId": "version_version_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VersionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/version": {
+      "get": {
+        "tags": [
+          "status"
+        ],
+        "summary": "Get version from API namespace",
+        "description": "Version endpoint exposed under the configured API namespace for clients that prefer versioned paths.",
+        "operationId": "api_version_api_v1_version_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VersionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/test-db": {
+      "get": {
+        "tags": [
+          "database"
+        ],
+        "summary": "Test database connectivity",
+        "description": "Performs a one-row Supabase read to validate backend database connectivity. Authentication behavior is unchanged.",
+        "operationId": "test_db_test_db_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/predict": {
+      "post": {
+        "tags": [
+          "prediction"
+        ],
+        "summary": "Classify an email",
+        "description": "Classifies an email as legitimate or phishing/spam using the packaged Linear SVM model. The endpoint accepts subject, body, and optional metadata, reproduces the Phase 2 feature engineering pipeline, and returns confidence, normalized decision score, and explanation fields.",
+        "operationId": "predict_predict_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmailPredictionRequest"
+              },
+              "examples": {
+                "legitimate": {
+                  "summary": "Legitimate business email",
+                  "value": {
+                    "subject": "Quarterly planning notes",
+                    "body": "Hi team, attached are the quarterly planning notes for review.",
+                    "metadata": {
+                      "reply_to": "manager@example.com"
+                    }
+                  }
+                },
+                "phishing": {
+                  "summary": "Phishing-style account verification email",
+                  "value": {
+                    "subject": "URGENT account verification",
+                    "body": "Immediate action required! Verify your bank account password now at http://verify-example.com/login"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailPredictionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The request payload failed validation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": {
+                    "code": "validation_error",
+                    "message": "Request validation failed.",
+                    "request_id": "8eb01bb4-c2dc-48c8-a293-eec95dcb544a",
+                    "details": [
+                      {
+                        "type": "missing",
+                        "loc": [
+                          "body",
+                          "body"
+                        ],
+                        "msg": "Field required"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The prediction service failed while processing the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": {
+                    "code": "prediction_failed",
+                    "message": "Prediction failed.",
+                    "request_id": "8eb01bb4-c2dc-48c8-a293-eec95dcb544a"
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The model or vectorizer is not available.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "error": {
+                    "code": "prediction_service_unavailable",
+                    "message": "Prediction service is not available.",
+                    "request_id": "8eb01bb4-c2dc-48c8-a293-eec95dcb544a"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EmailFeatures": {
+        "properties": {
+          "has_reply_to": {
+            "type": "integer",
+            "title": "Has Reply To"
+          },
+          "has_return_path": {
+            "type": "integer",
+            "title": "Has Return Path"
+          },
+          "subject_length": {
+            "type": "integer",
+            "title": "Subject Length"
+          },
+          "character_count": {
+            "type": "integer",
+            "title": "Character Count"
+          },
+          "word_count": {
+            "type": "integer",
+            "title": "Word Count"
+          },
+          "sentence_count": {
+            "type": "integer",
+            "title": "Sentence Count"
+          },
+          "average_word_length": {
+            "type": "number",
+            "title": "Average Word Length"
+          },
+          "uppercase_ratio": {
+            "type": "number",
+            "title": "Uppercase Ratio"
+          },
+          "digit_ratio": {
+            "type": "number",
+            "title": "Digit Ratio"
+          },
+          "punctuation_ratio": {
+            "type": "number",
+            "title": "Punctuation Ratio"
+          },
+          "exclamation_count": {
+            "type": "integer",
+            "title": "Exclamation Count"
+          },
+          "question_count": {
+            "type": "integer",
+            "title": "Question Count"
+          },
+          "url_count": {
+            "type": "integer",
+            "title": "Url Count"
+          },
+          "email_count": {
+            "type": "integer",
+            "title": "Email Count"
+          },
+          "ip_count": {
+            "type": "integer",
+            "title": "Ip Count"
+          },
+          "html_tag_count": {
+            "type": "integer",
+            "title": "Html Tag Count"
+          },
+          "attachment_keyword_count": {
+            "type": "integer",
+            "title": "Attachment Keyword Count"
+          },
+          "urgency_keyword_count": {
+            "type": "integer",
+            "title": "Urgency Keyword Count"
+          },
+          "financial_keyword_count": {
+            "type": "integer",
+            "title": "Financial Keyword Count"
+          },
+          "login_keyword_count": {
+            "type": "integer",
+            "title": "Login Keyword Count"
+          },
+          "cleaned_body": {
+            "type": "string",
+            "title": "Cleaned Body"
+          }
+        },
+        "type": "object",
+        "required": [
+          "has_reply_to",
+          "has_return_path",
+          "subject_length",
+          "character_count",
+          "word_count",
+          "sentence_count",
+          "average_word_length",
+          "uppercase_ratio",
+          "digit_ratio",
+          "punctuation_ratio",
+          "exclamation_count",
+          "question_count",
+          "url_count",
+          "email_count",
+          "ip_count",
+          "html_tag_count",
+          "attachment_keyword_count",
+          "urgency_keyword_count",
+          "financial_keyword_count",
+          "login_keyword_count",
+          "cleaned_body"
+        ],
+        "title": "EmailFeatures"
+      },
+      "EmailPredictionRequest": {
+        "properties": {
+          "subject": {
+            "type": "string",
+            "minLength": 0,
+            "title": "Subject",
+            "description": "Email subject line."
+          },
+          "body": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Body",
+            "description": "Raw email body text to classify."
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata",
+            "description": "Optional email metadata such as sender, reply_to, return_path, or precomputed feature values."
+          }
+        },
+        "type": "object",
+        "required": [
+          "subject",
+          "body"
+        ],
+        "title": "EmailPredictionRequest",
+        "examples": [
+          {
+            "body": "Hi team, attached are the quarterly planning notes for review.",
+            "metadata": {
+              "reply_to": "manager@example.com"
+            },
+            "subject": "Quarterly planning notes"
+          },
+          {
+            "body": "Immediate action required! Verify your bank account password now at http://verify-example.com/login",
+            "subject": "URGENT account verification"
+          }
+        ]
+      },
+      "EmailPredictionResponse": {
+        "properties": {
+          "prediction": {
+            "type": "string",
+            "title": "Prediction",
+            "description": "Model classification: legitimate or phishing_or_spam."
+          },
+          "label": {
+            "type": "integer",
+            "title": "Label",
+            "description": "0 means legitimate; 1 means phishing_or_spam."
+          },
+          "confidence_score": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence Score",
+            "description": "Distance-derived confidence for the selected class."
+          },
+          "probability_like_score": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Probability Like Score",
+            "description": "Sigmoid-normalized LinearSVC decision score for class 1."
+          },
+          "explanation": {
+            "$ref": "#/components/schemas/PredictionExplanation"
+          }
+        },
+        "type": "object",
+        "required": [
+          "prediction",
+          "label",
+          "confidence_score",
+          "probability_like_score",
+          "explanation"
+        ],
+        "title": "EmailPredictionResponse",
+        "example": {
+          "confidence_score": 0.8495,
+          "explanation": {
+            "decision_score": 1.731033,
+            "feature_summary": {
+              "attachment_keyword_count": 0,
+              "average_word_length": 8.0,
+              "character_count": 98,
+              "cleaned_body": "Immediate action required! Verify your bank account password now at <URL>",
+              "digit_ratio": 0.0,
+              "email_count": 0,
+              "exclamation_count": 1,
+              "financial_keyword_count": 2,
+              "has_reply_to": 0,
+              "has_return_path": 0,
+              "html_tag_count": 0,
+              "ip_count": 0,
+              "login_keyword_count": 4,
+              "punctuation_ratio": 0.08,
+              "question_count": 0,
+              "sentence_count": 1,
+              "subject_length": 27,
+              "uppercase_ratio": 0.08,
+              "urgency_keyword_count": 2,
+              "url_count": 1,
+              "word_count": 11
+            },
+            "model_version": "2.6.0",
+            "threshold": 0.0,
+            "top_signals": [
+              "contains 1 URL(s)",
+              "contains 4 login/account verification keyword(s)"
+            ]
+          },
+          "label": 1,
+          "prediction": "phishing_or_spam",
+          "probability_like_score": 0.8495
+        }
+      },
+      "ErrorDetail": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          },
+          "details": {
+            "anyOf": [
+              {},
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Details"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message",
+          "request_id"
+        ],
+        "title": "ErrorDetail",
+        "example": {
+          "code": "validation_error",
+          "details": [
+            {
+              "loc": [
+                "body",
+                "body"
+              ],
+              "msg": "Field required",
+              "type": "missing"
+            }
+          ],
+          "message": "Request validation failed.",
+          "request_id": "2c1bb78d-5d02-4d84-b69f-08b395e5b7d1"
+        }
+      },
+      "ErrorResponse": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ErrorDetail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse"
+      },
+      "HealthResponse": {
+        "properties": {
+          "api_status": {
+            "type": "string",
+            "title": "Api Status"
+          },
+          "model_loaded": {
+            "type": "boolean",
+            "title": "Model Loaded"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "api_status",
+          "model_loaded",
+          "version",
+          "timestamp"
+        ],
+        "title": "HealthResponse",
+        "example": {
+          "api_status": "ok",
+          "model_loaded": true,
+          "timestamp": "2026-07-31T11:17:41.313069+00:00",
+          "version": "3.2.0"
+        }
+      },
+      "PredictionExplanation": {
+        "properties": {
+          "model_version": {
+            "type": "string",
+            "title": "Model Version"
+          },
+          "decision_score": {
+            "type": "number",
+            "title": "Decision Score"
+          },
+          "threshold": {
+            "type": "number",
+            "title": "Threshold"
+          },
+          "top_signals": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Top Signals"
+          },
+          "feature_summary": {
+            "$ref": "#/components/schemas/EmailFeatures"
+          }
+        },
+        "type": "object",
+        "required": [
+          "model_version",
+          "decision_score",
+          "threshold",
+          "top_signals",
+          "feature_summary"
+        ],
+        "title": "PredictionExplanation"
+      },
+      "ReadinessResponse": {
+        "properties": {
+          "ready": {
+            "type": "boolean",
+            "title": "Ready"
+          },
+          "model_loaded": {
+            "type": "boolean",
+            "title": "Model Loaded"
+          },
+          "vectorizer_loaded": {
+            "type": "boolean",
+            "title": "Vectorizer Loaded"
+          },
+          "timestamp": {
+            "type": "string",
+            "title": "Timestamp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ready",
+          "model_loaded",
+          "vectorizer_loaded",
+          "timestamp"
+        ],
+        "title": "ReadinessResponse",
+        "example": {
+          "model_loaded": true,
+          "ready": true,
+          "timestamp": "2026-07-31T11:17:41.316584+00:00",
+          "vectorizer_loaded": true
+        }
+      },
+      "RootResponse": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "title": "RootResponse",
+        "example": {
+          "message": "Welcome to PhishGuard AI API"
+        }
+      },
+      "VersionResponse": {
+        "properties": {
+          "api_version": {
+            "type": "string",
+            "title": "Api Version"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version"
+          },
+          "environment": {
+            "type": "string",
+            "title": "Environment"
+          }
+        },
+        "type": "object",
+        "required": [
+          "api_version",
+          "model_version",
+          "environment"
+        ],
+        "title": "VersionResponse",
+        "example": {
+          "api_version": "3.2.0",
+          "environment": "development",
+          "model_version": "2.6.0"
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "status",
+      "description": "Operational health, readiness, and version endpoints."
+    },
+    {
+      "name": "prediction",
+      "description": "Email threat classification endpoints."
+    },
+    {
+      "name": "database",
+      "description": "Database connectivity diagnostics."
+    }
+  ]
+}

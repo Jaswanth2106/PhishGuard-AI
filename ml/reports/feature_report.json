@@ -1,0 +1,50 @@
+{
+    "numeric_averages": {
+        "character_count": 1343.9406,
+        "word_count": 243.7427,
+        "sentence_count": 15.6983,
+        "average_word_length": 4.1639,
+        "uppercase_ratio": 0.0092,
+        "digit_ratio": 0.052,
+        "punctuation_ratio": 0.0746,
+        "exclamation_count": 1.0562,
+        "question_count": 1.4454,
+        "url_count": 0.7717,
+        "email_count": 0.1036,
+        "ip_count": 0.0771,
+        "html_tag_count": 8.8095,
+        "attachment_keyword_count": 0.4145,
+        "urgency_keyword_count": 0.1284,
+        "financial_keyword_count": 0.4946,
+        "login_keyword_count": 0.2294,
+        "subject_length": 33.264
+    },
+    "percentages": {
+        "contains_url": 11.27,
+        "contains_html": 7.94,
+        "contains_email_address": 4.79
+    },
+    "top_20_sender_domains": {
+        "ebay.com": 43,
+        "paypal.com": 43,
+        "yahoo.com": 40,
+        "wamu.com": 39,
+        "hotmail.com": 36,
+        "insiq.us": 25,
+        "sendgreatoffers.com": 15,
+        "regions.com": 10,
+        "eudoramail.com": 9,
+        "lasallebank.com": 9,
+        "mail.com": 8,
+        "netscape.net": 8,
+        "huntington.com": 8,
+        "flashmail.com": 7,
+        "aol.com": 7,
+        "caramail.com": 7,
+        "excite.com": 7,
+        "terra.es": 7,
+        "msn.com": 6,
+        "frugaljoe.com": 6
+    },
+    "total_rows": 5406
+}

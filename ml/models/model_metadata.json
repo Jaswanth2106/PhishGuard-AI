@@ -1,0 +1,125 @@
+{
+  "model_name": "PhishGuard AI Linear SVM Email Threat Classifier",
+  "version": "2.6.0",
+  "algorithm": "Linear Support Vector Machine",
+  "implementation": {
+    "model_class": "sklearn.svm.LinearSVC",
+    "vectorizer_class": "sklearn.compose.ColumnTransformer",
+    "random_state": 42,
+    "max_iter": 2000
+  },
+  "training_date": "2026-07-31T08:28:44Z",
+  "dataset_version": {
+    "name": "PhishGuard composite email corpus",
+    "processed_dataset": "ml/data/processed/engineered_dataset.csv",
+    "final_rows": 5406,
+    "class_distribution": {
+      "legitimate": 3393,
+      "phishing_or_spam": 2013
+    },
+    "sources": [
+      {
+        "name": "Enron Email Corpus (Sampled)",
+        "version": "1.0",
+        "license": "Public Domain"
+      },
+      {
+        "name": "SpamAssassin Public Corpus",
+        "version": "20030228",
+        "license": "Apache 2.0"
+      },
+      {
+        "name": "Nazario Phishing Corpus",
+        "version": "2015",
+        "license": "Public Domain"
+      },
+      {
+        "name": "Modern Phishing Emails (GitHub)",
+        "version": "2023.1",
+        "license": "MIT"
+      }
+    ]
+  },
+  "performance_metrics": {
+    "test_set_size": 541,
+    "accuracy": 0.9907578558225508,
+    "precision": 0.99,
+    "recall": 0.9850746268656716,
+    "f1_score": 0.9875311720698254,
+    "roc_auc": 0.9998390400936494,
+    "pr_auc": 0.9997321893703797,
+    "false_positive_rate": 0.0058823529411764705,
+    "false_negative_rate": 0.014925373134328358,
+    "average_inference_latency_ms": 0.00678192886098696,
+    "benchmark_inference_latency_ms_per_email": 0.0121615510330623,
+    "model_size_mb": 0.3823204040527344
+  },
+  "feature_list": {
+    "text_features": [
+      {
+        "name": "cleaned_body",
+        "transformers": [
+          {
+            "type": "word_tfidf",
+            "max_features": 30000,
+            "ngram_range": [
+              1,
+              2
+            ],
+            "token_pattern": "(?u)\\b\\w+\\b"
+          },
+          {
+            "type": "char_tfidf",
+            "max_features": 20000,
+            "ngram_range": [
+              3,
+              5
+            ]
+          }
+        ]
+      }
+    ],
+    "numeric_features": [
+      "has_reply_to",
+      "has_return_path",
+      "subject_length",
+      "character_count",
+      "word_count",
+      "sentence_count",
+      "average_word_length",
+      "uppercase_ratio",
+      "digit_ratio",
+      "punctuation_ratio",
+      "exclamation_count",
+      "question_count",
+      "url_count",
+      "email_count",
+      "ip_count",
+      "html_tag_count",
+      "attachment_keyword_count",
+      "urgency_keyword_count",
+      "financial_keyword_count",
+      "login_keyword_count"
+    ],
+    "transformed_feature_count": 50020
+  },
+  "artifacts": {
+    "model": {
+      "path": "ml/models/model.pkl",
+      "sha256": "6384e4820a752d10089a7bb172324d14857933f7ce26f812d0d40d1ac1ba69c0",
+      "size_bytes": 400892
+    },
+    "vectorizer": {
+      "path": "ml/models/vectorizer.pkl",
+      "sha256": "0918348606e93f4d3768fd0782836f990fb5e907900ff49dbacbee3c10a459e0",
+      "size_bytes": 1847076
+    }
+  },
+  "verification": {
+    "load_verified": true,
+    "verification_date": "2026-07-31",
+    "verified_with_python": "3.14.2",
+    "verified_model_class": "sklearn.svm._classes.LinearSVC",
+    "verified_vectorizer_class": "sklearn.compose._column_transformer.ColumnTransformer"
+  }
+}

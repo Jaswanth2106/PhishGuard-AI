@@ -1,0 +1,54 @@
+{
+  "datasets": {
+    "enron": {
+      "name": "Enron Email Corpus (Sampled)",
+      "version": "1.0",
+      "url": "http://www2.aueb.gr/users/ion/data/enron-spam/preprocessed/enron1.tar.gz",
+      "local_path": "data/raw/enron",
+      "expected_file_name": "enron1.tar.gz",
+      "archive_type": ".tar.gz",
+      "expected_checksum": null,
+      "expected_extracted_folder": "enron1",
+      "license": "Public Domain"
+    },
+    "spamassassin": {
+      "name": "SpamAssassin Public Corpus",
+      "version": "20030228",
+      "url": "https://spamassassin.apache.org/old/publiccorpus/20030228_spam.tar.bz2",
+      "local_path": "data/raw/spamassassin",
+      "expected_file_name": "20030228_spam.tar.bz2",
+      "archive_type": ".tar.bz2",
+      "expected_checksum": null,
+      "expected_extracted_folder": "spam",
+      "license": "Apache 2.0"
+    },
+    "nazario": {
+      "name": "Nazario Phishing Corpus",
+      "version": "2015",
+      "url": "https://monkey.org/~jose/phishing/phishing0.mbox",
+      "local_path": "data/raw/nazario",
+      "expected_file_name": "phishing0.mbox",
+      "archive_type": ".mbox",
+      "expected_checksum": null,
+      "expected_extracted_folder": null,
+      "license": "Public Domain"
+    },
+    "modern_github": {
+      "name": "Modern Phishing Emails (GitHub)",
+      "version": "2023.1",
+      "url": "https://raw.githubusercontent.com/mohitgupta-omg/Kaggle-SMS-Spam-Collection-Dataset-/master/spam.csv",
+      "local_path": "data/raw/modern_github",
+      "expected_file_name": "emails.csv",
+      "archive_type": ".csv",
+      "expected_checksum": null,
+      "expected_extracted_folder": null,
+      "license": "MIT"
+    }
+  },
+  "allowed_licenses": [
+    "Public Domain",
+    "Apache 2.0",
+    "MIT",
+    "CC0"
+  ]
+}

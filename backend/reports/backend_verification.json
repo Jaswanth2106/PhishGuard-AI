@@ -1,0 +1,121 @@
+{
+  "phase": "3.2",
+  "generated_at": "2026-07-31T11:17:38.661915+00:00",
+  "checks": {
+    "startup": true,
+    "model_loads_exactly_once": true,
+    "health_endpoint": {
+      "passed": true,
+      "status_code": 200,
+      "response": {
+        "api_status": "ok",
+        "model_loaded": true,
+        "version": "3.2.0",
+        "timestamp": "2026-07-31T11:17:41.313069+00:00"
+      },
+      "request_id_header_present": true
+    },
+    "readiness_endpoint": {
+      "passed": true,
+      "status_code": 200,
+      "response": {
+        "ready": true,
+        "model_loaded": true,
+        "vectorizer_loaded": true,
+        "timestamp": "2026-07-31T11:17:41.316584+00:00"
+      },
+      "request_id_header_present": true
+    },
+    "version_endpoint": {
+      "passed": true,
+      "status_code": 200,
+      "response": {
+        "api_version": "3.2.0",
+        "model_version": "2.6.0",
+        "environment": "development"
+      },
+      "api_v1_status_code": 200,
+      "api_v1_response": {
+        "api_version": "3.2.0",
+        "model_version": "2.6.0",
+        "environment": "development"
+      }
+    },
+    "request_validation": {
+      "empty_body_passed": true,
+      "malformed_request_passed": true,
+      "empty_body_response": {
+        "error": {
+          "code": "validation_error",
+          "message": "Request validation failed.",
+          "request_id": "620202a4-7e03-4b63-9d8c-bc1c4bd04fcb",
+          "details": [
+            {
+              "type": "string_too_short",
+              "loc": [
+                "body",
+                "body"
+              ],
+              "msg": "String should have at least 1 character",
+              "input": "",
+              "ctx": {
+                "min_length": 1
+              }
+            }
+          ]
+        }
+      },
+      "malformed_response": {
+        "error": {
+          "code": "validation_error",
+          "message": "Request validation failed.",
+          "request_id": "3a3c555b-e25f-4dbe-9b45-4622a3868fc8",
+          "details": [
+            {
+              "type": "missing",
+              "loc": [
+                "body",
+                "body"
+              ],
+              "msg": "Field required",
+              "input": {
+                "subject": "Missing body"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "prediction_failure_handling": {
+      "passed": true,
+      "status_code": 500,
+      "response": {
+        "error": {
+          "code": "prediction_failed",
+          "message": "Prediction failed.",
+          "request_id": "c4b7c73b-a58b-4695-975d-48c48b343bf9",
+          "details": null
+        }
+      }
+    }
+  },
+  "samples": {
+    "legitimate_email": {
+      "passed": true,
+      "status_code": 200,
+      "request_id": "verification-legitimate",
+      "prediction": "legitimate",
+      "confidence_score": 0.6656145669575266,
+      "probability_like_score": 0.3343854330424733
+    },
+    "phishing_email": {
+      "passed": true,
+      "status_code": 200,
+      "request_id": "verification-phishing",
+      "prediction": "phishing_or_spam",
+      "confidence_score": 0.8495445300410397,
+      "probability_like_score": 0.8495445300410397
+    }
+  },
+  "overall_passed": true
+}

@@ -48,7 +48,7 @@ export function TestimonialsSection() {
               transition={{ duration: 0.6, delay: i * 0.2 }}
             >
               <p className="text-muted-foreground leading-relaxed italic mb-8">
-                "{t.quote}"
+                &quot;{t.quote}&quot;
               </p>
               <div className="flex items-center gap-4">
                 <div className={`w-12 h-12 rounded-full ${t.color} flex items-center justify-center text-white font-bold text-lg shadow-lg`}>
@@ -66,3 +66,4 @@ export function TestimonialsSection() {
     </section>
   );
 }
+

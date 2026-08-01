@@ -1,0 +1,87 @@
+{
+    "phase":  "4.1",
+    "name":  "Frontend Integration",
+    "generated_at":  "2026-07-31T14:11:42.9002330Z",
+    "status":  "completed",
+    "files_modified":  [
+                           "frontend_integration_report.json"
+                       ],
+    "integration_files_verified":  [
+                                       "frontend/src/lib/backend-api.ts",
+                                       "frontend/src/app/dashboard/analyse/page.tsx"
+                                   ],
+    "api_endpoints_connected":  [
+                                    {
+                                        "method":  "POST",
+                                        "path":  "/predict",
+                                        "caller":  "frontend/src/lib/backend-api.ts:analyzeEmail",
+                                        "consumer":  "frontend/src/app/dashboard/analyse/page.tsx"
+                                    }
+                                ],
+    "implementation_summary":  {
+                                   "centralized_api_service_layer":  "Implemented in frontend/src/lib/backend-api.ts with backend URL from NEXT_PUBLIC_BACKEND_API_URL.",
+                                   "mock_predictions":  "No mock prediction calls found in frontend/src; dashboard analysis uses analyzeEmail().",
+                                   "loading_state":  "Analyze button is disabled while waiting and shows an animated loading indicator.",
+                                   "duplicate_submission_prevention":  "Submit button disabled by isLoading during request.",
+                                   "retry_on_failure":  "Retry button reuses last payload after failed prediction.",
+                                   "backend_response_display":  [
+                                                                    "prediction",
+                                                                    "confidence_score",
+                                                                    "probability_like_score",
+                                                                    "explanation.model_version",
+                                                                    "explanation.top_signals",
+                                                                    "decision_score",
+                                                                    "threshold",
+                                                                    "feature summary signals"
+                                                                ],
+                                   "error_handling":  [
+                                                          "backend unavailable/network failure",
+                                                          "timeout via AbortController",
+                                                          "backend validation errors",
+                                                          "unexpected analysis failure"
+                                                      ],
+                                   "ui_design":  "Existing dashboard card layout retained."
+                               },
+    "verification_results":  {
+                                 "frontend_lint":  {
+                                                       "status":  "passed",
+                                                       "command":  "npm run lint"
+                                                   },
+                                 "frontend_build":  {
+                                                        "status":  "passed",
+                                                        "command":  "npm run build"
+                                                    },
+                                 "backend_prediction_tests":  {
+                                                                  "status":  "passed",
+                                                                  "command":  "PYTHONPATH=backend backend/venv/Scripts/python.exe -m unittest tests.test_backend_api",
+                                                                  "tests":  12
+                                                              },
+                                 "legitimate_email":  {
+                                                          "status":  "passed",
+                                                          "source":  "automated backend /predict test",
+                                                          "expected":  "legitimate"
+                                                      },
+                                 "phishing_email":  {
+                                                        "status":  "passed",
+                                                        "source":  "automated backend /predict test",
+                                                        "expected":  "phishing_or_spam"
+                                                    },
+                                 "empty_input":  {
+                                                     "status":  "passed",
+                                                     "frontend":  "client-side validation blocks empty subject/body",
+                                                     "backend":  "automated /predict empty body test returns 422 validation_error"
+                                                 },
+                                 "backend_offline":  {
+                                                         "status":  "passed",
+                                                         "source":  "direct offline network check against unused localhost port",
+                                                         "observed_error":  "Unable to connect to the remote server",
+                                                         "frontend_handling":  "BackendApiError with code network_error and retry UI path"
+                                                     }
+                             },
+    "constraints_observed":  [
+                                 "Authentication, Supabase, backend prediction logic, backend APIs, and ML model artifacts were not modified for Phase 4.1."
+                             ],
+    "remaining_issues":  [
+
+                         ]
+}
