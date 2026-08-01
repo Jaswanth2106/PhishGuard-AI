@@ -1,0 +1,188 @@
+{
+  "manifest_version": "1.0",
+  "package_version": "2.6.0",
+  "python_version": {
+    "verified": "3.14.2",
+    "recommended": ">=3.12,<3.15"
+  },
+  "required_packages": [
+    {
+      "name": "scikit-learn",
+      "verified_version": "1.9.0",
+      "purpose": "Loads the LinearSVC model and preprocessing pipeline."
+    },
+    {
+      "name": "joblib",
+      "verified_version": "1.5.3",
+      "purpose": "Deserializes model.pkl and vectorizer.pkl."
+    },
+    {
+      "name": "pandas",
+      "verified_version": "3.0.5",
+      "purpose": "Builds tabular input frames for the ColumnTransformer."
+    },
+    {
+      "name": "numpy",
+      "verified_version": "2.5.1",
+      "purpose": "Numerical array operations."
+    },
+    {
+      "name": "scipy",
+      "verified_version": "1.18.0",
+      "purpose": "Sparse matrix support used by TF-IDF transformations."
+    }
+  ],
+  "model_paths": {
+    "model": "ml/models/model.pkl",
+    "vectorizer": "ml/models/vectorizer.pkl",
+    "metadata": "ml/models/model_metadata.json",
+    "model_card": "ml/models/MODEL_CARD.md"
+  },
+  "input_schema": {
+    "type": "object",
+    "required": [
+      "cleaned_body",
+      "has_reply_to",
+      "has_return_path",
+      "subject_length",
+      "character_count",
+      "word_count",
+      "sentence_count",
+      "average_word_length",
+      "uppercase_ratio",
+      "digit_ratio",
+      "punctuation_ratio",
+      "exclamation_count",
+      "question_count",
+      "url_count",
+      "email_count",
+      "ip_count",
+      "html_tag_count",
+      "attachment_keyword_count",
+      "urgency_keyword_count",
+      "financial_keyword_count",
+      "login_keyword_count"
+    ],
+    "properties": {
+      "cleaned_body": {
+        "type": "string",
+        "description": "Cleaned email body text after the Phase 2 preprocessing pipeline."
+      },
+      "has_reply_to": {
+        "type": "integer",
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "has_return_path": {
+        "type": "integer",
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "subject_length": {
+        "type": "number"
+      },
+      "character_count": {
+        "type": "number"
+      },
+      "word_count": {
+        "type": "number"
+      },
+      "sentence_count": {
+        "type": "number"
+      },
+      "average_word_length": {
+        "type": "number"
+      },
+      "uppercase_ratio": {
+        "type": "number"
+      },
+      "digit_ratio": {
+        "type": "number"
+      },
+      "punctuation_ratio": {
+        "type": "number"
+      },
+      "exclamation_count": {
+        "type": "number"
+      },
+      "question_count": {
+        "type": "number"
+      },
+      "url_count": {
+        "type": "number"
+      },
+      "email_count": {
+        "type": "number"
+      },
+      "ip_count": {
+        "type": "number"
+      },
+      "html_tag_count": {
+        "type": "number"
+      },
+      "attachment_keyword_count": {
+        "type": "number"
+      },
+      "urgency_keyword_count": {
+        "type": "number"
+      },
+      "financial_keyword_count": {
+        "type": "number"
+      },
+      "login_keyword_count": {
+        "type": "number"
+      }
+    }
+  },
+  "output_schema": {
+    "type": "object",
+    "required": [
+      "label",
+      "label_name",
+      "decision_score"
+    ],
+    "properties": {
+      "label": {
+        "type": "integer",
+        "enum": [
+          0,
+          1
+        ],
+        "description": "0 means legitimate; 1 means phishing or spam."
+      },
+      "label_name": {
+        "type": "string",
+        "enum": [
+          "legitimate",
+          "phishing_or_spam"
+        ]
+      },
+      "decision_score": {
+        "type": "number",
+        "description": "LinearSVC margin score. Positive scores indicate class 1; negative scores indicate class 0."
+      }
+    }
+  },
+  "inference_contract": {
+    "load_order": [
+      "joblib.load('ml/models/vectorizer.pkl')",
+      "joblib.load('ml/models/model.pkl')"
+    ],
+    "prediction_steps": [
+      "Create a pandas DataFrame with exactly the input schema columns.",
+      "Call vectorizer.transform(input_frame).",
+      "Call model.predict(transformed_features).",
+      "Call model.decision_function(transformed_features) for decision_score."
+    ],
+    "probabilities_available": false,
+    "notes": [
+      "Do not refit the vectorizer in production.",
+      "Run the same Phase 2 parsing, cleaning, and feature engineering pipeline before inference.",
+      "The backend/app/ml_models artifacts currently differ from this Linear SVM package; deploy this manifest with ml/models/model.pkl and ml/models/vectorizer.pkl."
+    ]
+  }
+}

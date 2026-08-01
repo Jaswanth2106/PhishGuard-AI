@@ -1,0 +1,87 @@
+{
+  "info": {
+    "name": "PhishGuard Backend API",
+    "description": "Phase 3.3 Postman collection for health, readiness, version, and email prediction endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/health",
+        "description": "Returns API status, model loaded state, version, and timestamp."
+      }
+    },
+    {
+      "name": "Readiness",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/ready",
+        "description": "Returns whether the model and vectorizer are loaded."
+      }
+    },
+    {
+      "name": "Version",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/version",
+        "description": "Returns API version, model version, and environment."
+      }
+    },
+    {
+      "name": "Predict - Legitimate Email",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-request-id",
+            "value": "postman-legitimate"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"subject\": \"Quarterly planning notes\",\n  \"body\": \"Hi team, attached are the quarterly planning notes for review.\",\n  \"metadata\": {\n    \"reply_to\": \"manager@example.com\"\n  }\n}"
+        },
+        "url": "{{baseUrl}}/predict",
+        "description": "Classifies a normal business email."
+      }
+    },
+    {
+      "name": "Predict - Phishing Email",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-request-id",
+            "value": "postman-phishing"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"subject\": \"URGENT account verification\",\n  \"body\": \"Immediate action required! Verify your bank account password now at http://verify-example.com/login\"\n}"
+        },
+        "url": "{{baseUrl}}/predict",
+        "description": "Classifies a phishing-style account verification email."
+      }
+    }
+  ]
+}

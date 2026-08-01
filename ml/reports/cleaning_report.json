@@ -1,0 +1,19 @@
+{
+    "total_input_rows": 6086,
+    "rows_removed_empty": 100,
+    "rows_removed_short": 5,
+    "exact_duplicates_removed": 238,
+    "minhash_signatures_generated": 5743,
+    "candidate_pairs_examined": 8786,
+    "near_duplicates_removed": 337,
+    "runtime_seconds": 49.6,
+    "final_dataset_size": 5406,
+    "class_distribution_before_cleaning": {
+        "0": 3672,
+        "1": 2414
+    },
+    "class_distribution_after_cleaning": {
+        "0": 3393,
+        "1": 2013
+    }
+}

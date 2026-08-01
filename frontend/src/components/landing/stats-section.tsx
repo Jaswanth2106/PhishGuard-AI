@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, animate } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 function Counter({ from, to, duration, suffix = "" }: { from: number, to: number, duration: number, suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -59,3 +59,4 @@ export function StatsSection() {
     </section>
   );
 }
+

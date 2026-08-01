@@ -1,0 +1,18 @@
+{
+    "timestamp": 1785479547.381863,
+    "selected_model": "Multinomial Naive Bayes",
+    "metrics": {
+        "Algorithm": "Multinomial Naive Bayes",
+        "Accuracy": 1.0,
+        "Precision": 1.0,
+        "Recall": 1.0,
+        "F1": 1.0,
+        "ROC-AUC": 1.0,
+        "False_Negatives": 0,
+        "Training_Time_s": 0.0091,
+        "Inference_Time_ms": 0.0362,
+        "Peak_Memory_MB": 0.03,
+        "Model_Size_MB": 0.0
+    },
+    "justification": "Selected based on strict F1 and complexity rules."
+}

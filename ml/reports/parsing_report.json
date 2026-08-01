@@ -1,0 +1,2001 @@
+{
+    "total_parsed": 6086,
+    "recovered_emails": 332,
+    "failed_parses": 0,
+    "fallback_decoding_count": 332,
+    "remaining_unrecoverable_emails": 0,
+    "fallback_events": [
+        {
+            "filename": "00006.5ab5620d3d7c6c0db76234556a16f6c1",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00009.027bf6e0b0c4ab34db3ce0ea4bf2edab",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00012.381e4f512915109ba1e0853a7a8407b2",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00016.67fb281761ca1051a22ec3f21917e7c0",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00019.bbc97ad616ffd06e93ce0f821ca8c381",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00022.8203cdf03888f656dc0381701148f73d",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00028.ace98eff213f4e6314b5571aece625e1",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00036.256602e2cb5a5b373bdd1fb631d9f452",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00038.8d93819b95ff90bf2e2b141c2909bfc9",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00047.0d7a240951e460b5884a8886ee64a8c3",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00053.d88d8b162ca1b7108221fb338cd7d0a5",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00054.62863160db27f89df8c73275b6dae134",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00057.0a2e17bde9485e999ac2259df38528e2",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00062.3019eac14dfe3c503c03e25e70e63091",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00063.2334fb4e465fc61e8406c75918ff72ed",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00070.ab34b6c044a55bef3d6c1f64b7521773",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00071.4b7e06d97286ec97820a0f8725878126",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00072.d519a73b92f487519c2bc5ba45f5eb2c",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00073.8dcd40346d48c69a9e075e935395e96d",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00075.28a918cd03a0ef5aa2f1e0551a798108",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00076.066bf704d9c4a3cf45da5ac7a6b684f8",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00079.cc3fa7d977a44a09d450dde5db161c37",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00103.2eef38789b4ecce796e7e8dbe718e3d2",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00108.ce25a55c6b4cc9bcd32ed090ee20785a",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00111.ae6aba48f8aa83849be067076eea8ce5",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00116.29e39a0064e2714681726ac28ff3fdef",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00122.98bcaad36eb81e75911371f841f28dfc",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00125.120d27c936362896c00a3db9d3a4571e",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00126.e98e1ba87a38e0cceeb55f3b86dbd4dd",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00134.9f41f4111a33dc1efca04de72e1a105a",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00136.faa39d8e816c70f23b4bb8758d8a74f0",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00141.c30e993ea9a98743b0a98733bdfba8c2",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00147.1782d51354c31ea53db25ea927d5c51d",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00148.21c30154aa358d903c10c5d8a3ef6ffd",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00170.33a973aa9bb7d122bdfbd96d44332996",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00171.08c5c55e9c2b4062344655e9ee32b979",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00178.cdecf0f56ddc0bf61e922a131dc806c2",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00193.c04ef77bc3dbaa5762760a6ea138df0e",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00194.767c323b4ae7a4909397e42cbd0c56a4",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00200.bacd4b2168049778b480367ca670254f",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00207.0b71ac81a360455c1514f5872564b1e1",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00213.8c42a1c257aa30ff3b3ba668cca59408",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00217.43b4ef3d9c56cf42be9c37b546a19e78",
+            "dataset": "spamassassin",
+            "declared_charset": "default_charset",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00224.0654fe0af51e1dcefa0eb66eb932f55f",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00225.b1ca16fa2be1be1d68f5e3bf2603f3cb",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00226.e0e2704cde3bbd561a98042f4a3baf5f",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00229.4c37dd3d98b8d6fb2694b6f83061ca5a",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00231.77a5d20da55f185c1bb7a3949332d364",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00240.2ff7f745285653a238214d975859406b",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00242.e030c8b1f053037aeffb062f3a34b523",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00243.c6e70273fe1cf9e56e26bb6bbeef415d",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00245.f129d5e7df2eebd03948bb4f33fa7107",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00261.12b64e557e52daf5fc5a52e47df2f4e3",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00262.678598cbe253f19239da03b65dac7392",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00263.13fc73e09ae15e0023bdb13d0a010f2d",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00277.64128ce1653bc4e1bde9ffe2f83db557",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00286.efd0b8f0c9c779b7a0ad93505c9b0bae",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00308.c80d7cb2a6981efac408b429d42d2b89",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00313.fab744bfd5a128fca39b69df9811c086",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00317.22fe43af6f4c707c4f1bdc56af959a8e",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00319.a99dff9c010e00ec182ed5701556d330",
+            "dataset": "spamassassin",
+            "declared_charset": "unknown-8bit",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00320.20dcbb5b047b8e2f212ee78267ee27ad",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00321.22ec127de780c31da00ae5e1c1aa32e4",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00322.7d39d31fb7aad32c15dff84c14019b8c",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00323.9e36bf05304c99f2133a4c03c49533a9",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00324.6f320a8c6b5f8e4bc47d475b3d4e86ef",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00329.af4af411fb1268d1461b29fa2d2145a3",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00336.92409253178027f58e2c072a7e82791e",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00371.3bc80f63aa7c64a56eb77fc82ce22e7f",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00375.1130c29a255fa277c5acbee4d08edacd",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00380.a262abe251ca7cc3026e4e146d9cf817",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00385.51089b24dee5a89d38ee1b505b470c68",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00388.53eae0055e66fcb7194f9cca080fdefe",
+            "dataset": "spamassassin",
+            "declared_charset": "default",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00395.f9df5b3574ef5ba6143c08a1fa301886",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00403.46d0face754b6bb7dce8b3ea560f75fb",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00408.22230b84aee00e439ae1938e025d5005",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00410.b3134c2bf520f95f9b90d4aef4fdd683",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00414.b2312673ca5358901c801eb44c00e310",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00417.7b196fd20fd308e0afa9032ccb02474b",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00421.ca2fe949a956845a9ba81c649a7db6c0",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00430.d2179c2841013fea688db8bbcf60b3b0",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00431.12b2043fed99f1202eb0677969d1a61e",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00434.8507c67a652e01636df9b92a0a397193",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00437.defdb75139dbe5cdd027cbab9f704a27",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00439.6f4246a5e3336b6ecb5624e209e0b59f",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00441.77768298934252b2fa200e7d9482993b",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00449.7d33f465cb813806296901ee541841d6",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00450.93d3d59fcdd0f8fda9ef4678535182e8",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00464.8240aba24840864cb7439fc03f94ef6e",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00467.5b733c506b7165424a0d4a298e67970f",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00469.ee3b2f31459cc2ec43ae7cae00d40cf6",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00473.7086ec944a1245a002b04547a433c887",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00477.24ef7a042f97482f884387c75249380c",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00480.a5931465ca6f5b22eff24943b5c8b17d",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00481.5c95b526e965fa325044123c4ce29c1f",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00483.50c5dda7dd4710798c15a85ade6e9f93",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00487.139a2f4e8edbbdd64441536308169d74",
+            "dataset": "spamassassin",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00495.e22a609b7dc412c120d09e11544c67fb",
+            "dataset": "spamassassin",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "00500.85b72f09f6778a085dc8b6821965a76f",
+            "dataset": "spamassassin",
+            "declared_charset": "gb2312",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_0",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_1",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_4",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_5",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_9",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_10",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_12",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_13",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_14",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_15",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_16",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_17",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_21",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_23",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_24",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_26",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_27",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_32",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_36",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_37",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_38",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_46",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_47",
+            "dataset": "nazario",
+            "declared_charset": "iso-7163-9",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_51",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_53",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_56",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_61",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_64",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_66",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_67",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_69",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_70",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_71",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_72",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_73",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_74",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_75",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_76",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_77",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_78",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_79",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_80",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_81",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_82",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_83",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_84",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_85",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_86",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_87",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_88",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_89",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_90",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_91",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_92",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_93",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_94",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_95",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_96",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_97",
+            "dataset": "nazario",
+            "declared_charset": "iso-4992-6",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_99",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_100",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_101",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_102",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_103",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_109",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_111",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_113",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_114",
+            "dataset": "nazario",
+            "declared_charset": "iso-4847-5",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_116",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_117",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_118",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_119",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_120",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_121",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_122",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_123",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_126",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_127",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_128",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_129",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_130",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_134",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_135",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_136",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_137",
+            "dataset": "nazario",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_138",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_139",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_140",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_141",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_144",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_145",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_147",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_148",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_150",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_151",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_153",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_155",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_156",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_157",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_158",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_159",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_160",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_162",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_163",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_165",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_166",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_167",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_168",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_169",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_170",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_171",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_172",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_173",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_174",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_175",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_176",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_177",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_181",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_182",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_183",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_184",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_185",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_186",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_188",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_189",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_190",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_192",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_193",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_194",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_196",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_197",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_198",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_199",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_204",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_208",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_217",
+            "dataset": "nazario",
+            "declared_charset": "%charset",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_218",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_223",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_225",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_227",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_229",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_232",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_234",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_235",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_236",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_238",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_239",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_240",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_244",
+            "dataset": "nazario",
+            "declared_charset": "iso-5413-4",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_245",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_246",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_249",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_250",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_251",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_253",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_257",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_258",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_259",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_260",
+            "dataset": "nazario",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_269",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_272",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_274",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_277",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_278",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_279",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_281",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_286",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_287",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_288",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_293",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_294",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_297",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_298",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_309",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_313",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_315",
+            "dataset": "nazario",
+            "declared_charset": "windows-1252",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_319",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_320",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_321",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_322",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_324",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_325",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_326",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_328",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_329",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_330",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_332",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_334",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_335",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_336",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_338",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_339",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_343",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_344",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_350",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_353",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_354",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_356",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_357",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_358",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_359",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_362",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_365",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_366",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_367",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_368",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_370",
+            "dataset": "nazario",
+            "declared_charset": "windows-1252",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_371",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_373",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_376",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_379",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_380",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_381",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_386",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_387",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_389",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_393",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_395",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_398",
+            "dataset": "nazario",
+            "declared_charset": "us-ascii",
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_399",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_400",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_402",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_403",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_404",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_405",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_406",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_407",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_408",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_409",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_410",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_411",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_412",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        },
+        {
+            "filename": "nazario_msg_413",
+            "dataset": "nazario",
+            "declared_charset": null,
+            "fallback_charset_used": "utf-8 (replace)"
+        }
+    ]
+}

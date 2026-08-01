@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { 
   FileCode, 
   Image, 
-  FileJson, 
+ 
   FileText, 
   FileSpreadsheet, 
   Archive, 
@@ -58,3 +58,5 @@ export function SupportedInputsSection() {
     </section>
   );
 }
+
+

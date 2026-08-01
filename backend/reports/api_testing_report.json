@@ -1,0 +1,46 @@
+{
+  "phase": "3.3",
+  "generated_at": "2026-07-31T12:27:26.119086+00:00",
+  "overall_passed": true,
+  "automated_tests": {
+    "command": "backend\\venv\\Scripts\\python.exe -m unittest discover -s tests -p \"test_backend_api.py\" -v",
+    "tests_run": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": true,
+    "output": "test_empty_body_is_invalid (test_backend_api.BackendApiTests.test_empty_body_is_invalid) ... ok\ntest_health_endpoint (test_backend_api.BackendApiTests.test_health_endpoint) ... ok\ntest_malformed_request_is_invalid (test_backend_api.BackendApiTests.test_malformed_request_is_invalid) ... ok\ntest_model_load_is_idempotent (test_backend_api.BackendApiTests.test_model_load_is_idempotent) ... ok\ntest_model_unavailable_scenario (test_backend_api.BackendApiTests.test_model_unavailable_scenario) ... ok\ntest_openapi_documents_required_endpoints (test_backend_api.BackendApiTests.test_openapi_documents_required_endpoints) ... ok\ntest_predict_legitimate_email (test_backend_api.BackendApiTests.test_predict_legitimate_email) ... ok\ntest_predict_phishing_email (test_backend_api.BackendApiTests.test_predict_phishing_email) ... ok\ntest_ready_endpoint (test_backend_api.BackendApiTests.test_ready_endpoint) ... ok\ntest_version_endpoint (test_backend_api.BackendApiTests.test_version_endpoint) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.464s\n\nOK\n"
+  },
+  "openapi_documentation": {
+    "snapshot_path": "backend\\reports\\openapi.json",
+    "required_paths_present": {
+      "/predict": true,
+      "/health": true,
+      "/ready": true,
+      "/version": true
+    },
+    "predict_summary": "Classify an email",
+    "predict_has_request_examples": true,
+    "predict_response_codes": [
+      "200",
+      "422",
+      "500",
+      "503"
+    ]
+  },
+  "postman_collection": {
+    "path": "backend\\postman\\PhishGuard_Backend_API.postman_collection.json",
+    "valid": true,
+    "items": [
+      "Health",
+      "Readiness",
+      "Version",
+      "Predict - Legitimate Email",
+      "Predict - Phishing Email"
+    ]
+  },
+  "api_testing_document": {
+    "path": "backend\\docs\\API_TESTING.md",
+    "exists": true
+  }
+}

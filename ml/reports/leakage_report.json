@@ -1,0 +1,33 @@
+{
+  "leakage_found": false,
+  "issues_found": [],
+  "recommendations": [
+    "Drop 'sender_domain' before training. Using raw sender domains as a categorical feature leads to severe overfitting. The model would memorize highly targeted domains (e.g., 'paypal.com' or 'ebay.com') as purely phishing indicators. This will cause false positives for legitimate emails from these domains and false negatives for phishing emails using novel spoofed domains."
+  ],
+  "approved_features": [
+    "character_count",
+    "word_count",
+    "sentence_count",
+    "average_word_length",
+    "uppercase_ratio",
+    "digit_ratio",
+    "punctuation_ratio",
+    "exclamation_count",
+    "question_count",
+    "url_count",
+    "email_count",
+    "ip_count",
+    "html_tag_count",
+    "attachment_keyword_count",
+    "urgency_keyword_count",
+    "financial_keyword_count",
+    "login_keyword_count",
+    "has_reply_to",
+    "has_return_path",
+    "subject_length",
+    "cleaned_body"
+  ],
+  "rejected_features": [
+    "sender_domain"
+  ]
+}

@@ -1,17 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+
+type Particle = {
+  x: number;
+  y: number;
+  opacity: number;
+  travelY: number;
+  duration: number;
+};
+
+function seededValue(index: number, salt: number) {
+  const value = Math.sin(index * 91.7 + salt * 37.1) * 10000;
+  return value - Math.floor(value);
+}
+
+const particles: Particle[] = Array.from({ length: 15 }, (_, index) => ({
+  x: seededValue(index + 1, 1) * 1000,
+  y: seededValue(index + 1, 2) * 800,
+  opacity: seededValue(index + 1, 3) * 0.5 + 0.3,
+  travelY: seededValue(index + 1, 4) * -500,
+  duration: seededValue(index + 1, 5) * 10 + 10,
+}));
 
 export function AnimatedBackground() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
   return (
     <div className="fixed inset-0 -z-50 overflow-hidden pointer-events-none bg-background">
       {/* Soft Blur Gradients */}
@@ -24,21 +36,21 @@ export function AnimatedBackground() {
       />
 
       {/* Moving Particles */}
-      {Array.from({ length: 15 }).map((_, i) => (
+      {particles.map((particle, i) => (
         <motion.div
           key={i}
           className="absolute w-1 h-1 bg-primary rounded-full shadow-[0_0_10px_2px_rgba(var(--primary),0.5)]"
           initial={{
-            x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1000),
-            y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 1000),
-            opacity: Math.random() * 0.5 + 0.3,
+            x: particle.x,
+            y: particle.y,
+            opacity: particle.opacity,
           }}
           animate={{
-            y: [null, Math.random() * -500],
+            y: [null, particle.travelY],
             opacity: [null, 0],
           }}
           transition={{
-            duration: Math.random() * 10 + 10,
+            duration: particle.duration,
             repeat: Infinity,
             ease: "linear",
           }}
