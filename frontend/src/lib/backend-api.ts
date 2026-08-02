@@ -95,7 +95,7 @@ export class BackendApiError extends Error {
 const DEFAULT_TIMEOUT_MS = 10000
 
 export function backendBaseUrl() {
-  return (process.env.NEXT_PUBLIC_BACKEND_API_URL || "http://127.0.0.1:8000").replace(/\/$/, "")
+  return (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000").replace(/\/$/, "")
 }
 
 async function requestBackendWithMetadata<T>(path: string, options: RequestOptions = {}): Promise<BackendResult<T>> {
@@ -104,7 +104,13 @@ async function requestBackendWithMetadata<T>(path: string, options: RequestOptio
   const timeoutId = window.setTimeout(() => controller.abort(), options.timeoutMs ?? DEFAULT_TIMEOUT_MS)
 
   try {
-    const response = await fetch(`${backendBaseUrl()}${path}`, {
+    const resolvedBaseUrl = backendBaseUrl();
+    const finalUrl = `${resolvedBaseUrl}${path}`;
+    console.log("[RUNTIME TRACE] NEXT_PUBLIC_API_URL:", process.env.NEXT_PUBLIC_API_URL);
+    console.log("[RUNTIME TRACE] Resolved Base URL:", resolvedBaseUrl);
+    console.log("[RUNTIME TRACE] Final Fetch URL:", finalUrl);
+
+    const response = await fetch(finalUrl, {
       method: options.method ?? "GET",
       headers: {
         "Content-Type": "application/json",

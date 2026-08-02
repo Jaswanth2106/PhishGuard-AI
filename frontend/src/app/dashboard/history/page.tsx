@@ -4,14 +4,13 @@ import { useEffect, useState } from "react"
 import { Loader2, Search, Trash2, ShieldAlert, CheckCircle2, FileText } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { getSupabaseClient } from "@/lib/supabase-client"
 
 type Scan = {
   id: string
   subject: string
   body_snippet: string
   prediction: string
-  confidence_score: number
+  confidence: number
   created_at: string
 }
 
@@ -24,13 +23,9 @@ export default function HistoryPage() {
     async function fetchScans() {
       setLoading(true)
       try {
-        const supabase = getSupabaseClient()
-        const { data, error } = await supabase
-          .from("scans")
-          .select("*")
-          .order("created_at", { ascending: false })
-        
-        if (!error && data) {
+        const res = await fetch("/api/history")
+        if (res.ok) {
+          const data = await res.json()
           setScans(data)
         }
       } catch (err) {
@@ -44,9 +39,8 @@ export default function HistoryPage() {
 
   async function deleteScan(id: string) {
     try {
-      const supabase = getSupabaseClient()
-      const { error } = await supabase.from("scans").delete().eq("id", id)
-      if (!error) {
+      const res = await fetch(`/api/history?id=${id}`, { method: 'DELETE' })
+      if (res.ok) {
         setScans((prev) => prev.filter((scan) => scan.id !== id))
       }
     } catch (err) {
@@ -121,8 +115,8 @@ export default function HistoryPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
-                          <span className={scan.confidence_score >= 0.8 && isPhishing ? 'text-destructive font-semibold' : ''}>
-                            {(scan.confidence_score * 100).toFixed(1)}%
+                          <span className={scan.confidence >= 0.8 && isPhishing ? 'text-destructive font-semibold' : ''}>
+                            {(scan.confidence * 100).toFixed(1)}%
                           </span>
                         </div>
                       </td>

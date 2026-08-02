@@ -20,6 +20,8 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY: str = "change-this-secret-in-production"
     JWT_ALGORITHM: str = "HS256"
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
+    RATE_LIMIT_MAX: int = 100
+    RATE_LIMIT_WINDOW: int = 60
 
     # BACKEND_CORS_ORIGINS is a JSON-formatted list of origins
     # e.g: '["http://localhost", "http://localhost:3000"]'

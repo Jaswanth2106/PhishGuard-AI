@@ -34,7 +34,7 @@ const stats = [
 
 export function StatsSection() {
   return (
-    <section className="py-20 relative z-10">
+    <section id="about" className="py-20 relative z-10">
       <div className="max-w-7xl mx-auto px-6">
         <div className="glass-card p-8 rounded-3xl border-primary/20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-border/50">

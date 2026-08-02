@@ -147,22 +147,28 @@ async def add_security_headers(request: Request, call_next):
 
 # Basic in-memory rate limiting dict (for demonstration/Phase 9)
 import time
+import random
 RATE_LIMIT_DICT = {}
-RATE_LIMIT_MAX = 100
-RATE_LIMIT_WINDOW = 60
 
 @app.middleware("http")
 async def rate_limit_middleware(request: Request, call_next):
     client_ip = request.client.host if request.client else "unknown"
     current_time = time.time()
     
+    # Global cleanup every ~1% of requests to prevent memory leak from abandoned IPs
+    if random.random() < 0.01:
+        for ip in list(RATE_LIMIT_DICT.keys()):
+            RATE_LIMIT_DICT[ip] = [t for t in RATE_LIMIT_DICT[ip] if current_time - t < settings.RATE_LIMIT_WINDOW]
+            if not RATE_LIMIT_DICT[ip]:
+                del RATE_LIMIT_DICT[ip]
+
     if client_ip not in RATE_LIMIT_DICT:
         RATE_LIMIT_DICT[client_ip] = []
         
-    # Clean up old requests
-    RATE_LIMIT_DICT[client_ip] = [t for t in RATE_LIMIT_DICT[client_ip] if current_time - t < RATE_LIMIT_WINDOW]
+    # Clean up old requests for the current IP
+    RATE_LIMIT_DICT[client_ip] = [t for t in RATE_LIMIT_DICT[client_ip] if current_time - t < settings.RATE_LIMIT_WINDOW]
     
-    if len(RATE_LIMIT_DICT[client_ip]) >= RATE_LIMIT_MAX:
+    if len(RATE_LIMIT_DICT[client_ip]) >= settings.RATE_LIMIT_MAX:
         from fastapi.responses import JSONResponse
         return JSONResponse(status_code=429, content={"detail": "Rate limit exceeded. Please try again later."})
         
@@ -172,7 +178,7 @@ async def rate_limit_middleware(request: Request, call_next):
 if settings.BACKEND_CORS_ORIGINS:
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[str(origin) for origin in settings.BACKEND_CORS_ORIGINS],
+        allow_origins=[str(origin).rstrip("/") for origin in settings.BACKEND_CORS_ORIGINS],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],

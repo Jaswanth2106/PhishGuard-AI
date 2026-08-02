@@ -63,6 +63,11 @@ export default function LoginPage() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+
+    if (isLoading) {
+      return
+    }
+
     setMessage("")
 
     if (!validate()) {
