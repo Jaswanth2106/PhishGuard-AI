@@ -86,12 +86,12 @@ export default function DashboardLayout({
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <div className="h-full flex flex-col glass border-r border-border/50 shadow-2xl lg:shadow-none bg-card/80">
-          <div className="h-20 flex items-center px-6 border-b border-border/50">
+          <Link href="/dashboard/overview" className="h-20 flex items-center px-6 border-b border-border/50 hover:bg-primary/5 transition-colors cursor-pointer">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center font-bold text-white shadow-lg mr-3">
               P
             </div>
             <span className="text-xl font-bold tracking-tight text-foreground">PhishGuard AI</span>
-          </div>
+          </Link>
           
           <div className="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-2">
             {navigation.map((item) => {

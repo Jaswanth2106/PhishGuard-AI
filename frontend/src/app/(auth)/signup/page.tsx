@@ -75,6 +75,11 @@ export default function SignupPage() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+
+    if (isLoading) {
+      return
+    }
+
     setMessage("")
 
     if (!validate()) {
@@ -83,25 +88,38 @@ export default function SignupPage() {
 
     setIsLoading(true)
     try {
-      const supabase = getSupabaseClient()
-      const emailRedirectTo = `${window.location.origin}/login`
-      const { error } = await supabase.auth.signUp({
-        email: email.trim(),
-        password,
-        options: {
-          emailRedirectTo,
-          data: {
-            full_name: name.trim(),
-          },
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          email: email.trim(),
+          password,
+          name: name.trim(),
+        }),
       })
 
-      if (error) {
-        setMessage(friendlySignupError(error.message))
+      const data = await response.json()
+
+      if (!response.ok) {
+        setMessage(friendlySignupError(data.error || "An unknown error occurred."))
         return
       }
 
-      setMessage("Account created. Check your email to verify your account before signing in.")
+      // After successful registration, sign in
+      const supabase = getSupabaseClient()
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email: email.trim(),
+        password,
+      })
+      
+      if (signInError) {
+        setMessage("Account created, but couldn't sign in automatically. Please log in.")
+        return
+      }
+
+      setMessage("Account created successfully. Redirecting...")
     } catch (error) {
       setMessage(error instanceof Error ? friendlySignupError(error.message) : "Network failure. Please try again.")
     } finally {

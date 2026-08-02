@@ -14,10 +14,12 @@ import {
   ServerCrash,
   ShieldAlert,
   WifiOff,
+  Image as ImageIcon,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { analyzeEmail, BackendApiError, type EmailPredictionResponse } from "@/lib/backend-api"
+import { AiExplanationPanel, type AiExplanation } from "@/components/dashboard/AiExplanationPanel"
 
 const MIN_BODY_LENGTH = 5
 
@@ -180,6 +182,9 @@ export default function Page() {
   const [lastPayload, setLastPayload] = useState<AnalysisPayload | null>(null)
   const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle")
 
+  const [aiExplanation, setAiExplanation] = useState<AiExplanation | null>(null)
+  const [isAiExplaining, setIsAiExplaining] = useState(false)
+
   const bodyCharacterCount = body.trim().length
   const canRetry = Boolean(lastPayload && !isLoading)
   const resultSignals = useMemo(() => result?.explanation.top_signals ?? [], [result])
@@ -208,29 +213,67 @@ export default function Page() {
     setIsLoading(true)
     setError(null)
     setResult(null)
+    setAiExplanation(null)
     setCopyState("idle")
 
     try {
       const prediction = await analyzeEmail(payload)
       setResult(prediction)
       setLastPayload(payload)
+      
+      // Fire history save async
+      fetch('/api/history', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: payload.subject,
+          body: payload.body,
+          prediction: prediction.prediction,
+          confidence: prediction.confidence_score,
+        })
+      }).catch(err => console.error("History save error", err))
 
+      // Now fetch AI Explanation
+      setIsAiExplaining(true)
       try {
-        const { getSupabaseClient } = await import("@/lib/supabase-client")
-        const supabase = getSupabaseClient()
-        const { data: userData } = await supabase.auth.getUser()
-        if (userData.user) {
-          await supabase.from('scans').insert({
-            user_id: userData.user.id,
+        const explainRes = await fetch('/api/v1/analyze/explain', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
             subject: payload.subject,
-            body_snippet: payload.body.substring(0, 200),
+            body: payload.body,
             prediction: prediction.prediction,
             confidence_score: prediction.confidence_score,
+            top_signals: prediction.explanation.top_signals,
+          })
+        })
+        if (explainRes.ok) {
+          const explanation = await explainRes.json()
+          setAiExplanation(explanation)
+        } else {
+          const errData = await explainRes.json().catch(() => ({}));
+          console.error("AI Explanation Server Error:", errData.error || "Unknown error");
+          setAiExplanation({
+             riskLevel: "Medium",
+             reasons: [errData?.error || "Gemini AI is temporarily unavailable due to high demand. Please try again in a few minutes."],
+             suspiciousLinks: [],
+             socialEngineering: [],
+             recommendedAction: "Try analyzing the email again later."
           })
         }
-      } catch (err) {
-        console.error("Failed to save scan to history", err)
+      } catch (e: any) {
+        console.error("AI Explanation error:", e?.message || "Failed to connect to explanation service");
+        setAiExplanation({
+           riskLevel: "Medium",
+           reasons: ["Failed to connect to the Gemini AI explanation service."],
+           suspiciousLinks: [],
+           socialEngineering: [],
+           recommendedAction: "Try analyzing the email again later."
+        })
+      } finally {
+        setIsAiExplaining(false)
       }
+
     } catch (caught) {
       setError(errorFromCaught(caught))
       setLastPayload(payload)
@@ -253,6 +296,89 @@ export default function Page() {
     }
 
     void runAnalysis({ subject: subject.trim(), body: body.trim() })
+  }
+
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [isOcrLoading, setIsOcrLoading] = useState(false)
+
+  const [isDragging, setIsDragging] = useState(false)
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragging(true)
+  }
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragging(false)
+  }
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragging(false)
+    
+    const file = e.dataTransfer.files?.[0]
+    if (!file || !file.type.startsWith("image/")) return
+
+    await processImageFile(file)
+  }
+
+  async function processImageFile(file: File) {
+    try {
+      setIsOcrLoading(true)
+      
+      const formData = new FormData()
+      formData.append("image", file)
+      
+      const response = await fetch("/api/v1/analyze/image", {
+        method: "POST",
+        body: formData,
+      })
+
+      if (!response.ok) {
+        let errMessage = "Failed to extract text from image"
+        try {
+          const errData = await response.json()
+          errMessage = errData.error || errMessage
+        } catch (e) {
+          // ignore
+        }
+        
+        setError({
+          kind: "backend",
+          title: "Image Extraction Unavailable",
+          message: errMessage
+        })
+        return
+      }
+
+      const data = await response.json()
+      const extractedText = data.extractedText
+
+      if (extractedText && extractedText !== "No text found.") {
+        setBody((prev) => (prev ? `${prev}\n\n[Extracted via Gemini Vision]\n${extractedText}` : extractedText))
+      } else {
+        setBody((prev) => (prev ? `${prev}\n\n[Extracted via Gemini Vision]\nNo text could be extracted.` : "No text could be extracted."))
+      }
+    } catch (err: any) {
+      console.error("OCR Error:", err.message || "Failed to process image")
+      setError({
+        kind: "unknown",
+        title: "Image Upload Failed",
+        message: err.message || "Failed to extract text from the image. Please try again or paste text manually."
+      })
+    } finally {
+      setIsOcrLoading(false)
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ""
+      }
+    }
+  }
+
+  async function handleImageUpload(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0]
+    if (!file) return
+    await processImageFile(file)
   }
 
   function handleRetry() {
@@ -329,20 +455,55 @@ export default function Page() {
                 <label htmlFor="email-body" className="text-sm font-medium">
                   Body
                 </label>
-                <span className="text-xs text-muted-foreground" aria-live="polite">
-                  {bodyCharacterCount} characters
-                </span>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs text-muted-foreground" aria-live="polite">
+                    {bodyCharacterCount} characters
+                  </span>
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    size="sm" 
+                    className="h-7 text-xs" 
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={isOcrLoading}
+                  >
+                    {isOcrLoading ? <Loader2 className="mr-1 h-3 w-3 animate-spin" /> : <ImageIcon className="mr-1 h-3 w-3" />}
+                    {isOcrLoading ? "Extracting..." : "Upload Image"}
+                  </Button>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    ref={fileInputRef}
+                    onChange={handleImageUpload}
+                  />
+                </div>
               </div>
-              <textarea
-                id="email-body"
-                value={body}
-                onChange={(event) => setBody(event.target.value)}
-                placeholder="Paste the full email body here..."
-                rows={12}
-                aria-invalid={Boolean(fieldErrors.body)}
-                aria-describedby={fieldErrors.body ? "body-error" : undefined}
-                className="min-h-56 w-full resize-y rounded-lg border border-input bg-background px-3 py-3 text-sm leading-6 outline-none transition focus:border-ring focus:ring-3 focus:ring-ring/20"
-              />
+              <div 
+                className={`relative rounded-lg transition-all duration-200 ${isDragging ? "ring-2 ring-primary ring-offset-2 bg-primary/5" : ""}`}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+              >
+                {isDragging && (
+                  <div className="absolute inset-0 z-10 flex items-center justify-center rounded-lg bg-background/80 backdrop-blur-sm border-2 border-dashed border-primary">
+                    <div className="flex flex-col items-center gap-2 text-primary">
+                      <ImageIcon className="h-8 w-8 animate-bounce" />
+                      <p className="font-medium">Drop image here to extract text</p>
+                    </div>
+                  </div>
+                )}
+                <textarea
+                  id="email-body"
+                  value={body}
+                  onChange={(event) => setBody(event.target.value)}
+                  placeholder="Paste the full email body here... Or drag & drop a screenshot to extract text."
+                  rows={12}
+                  aria-invalid={Boolean(fieldErrors.body)}
+                  aria-describedby={fieldErrors.body ? "body-error" : undefined}
+                  className="min-h-56 w-full resize-y rounded-lg border border-input bg-background px-3 py-3 text-sm leading-6 outline-none transition focus:border-ring focus:ring-3 focus:ring-ring/20"
+                />
+              </div>
               {fieldErrors.body && (
                 <p id="body-error" className="text-sm text-destructive" role="alert">
                   {fieldErrors.body}
@@ -461,6 +622,15 @@ export default function Page() {
                   </div>
                 </div>
               </div>
+
+              {isAiExplaining ? (
+                <div className="rounded-lg border border-border/60 bg-muted/30 p-6 text-center">
+                  <Loader2 className="mx-auto h-8 w-8 animate-spin text-primary" />
+                  <p className="mt-4 text-sm font-medium">Gemini AI is analyzing the results...</p>
+                </div>
+              ) : (
+                <AiExplanationPanel explanation={aiExplanation} />
+              )}
 
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                 <div className="rounded-lg border border-border/60 bg-background/60 p-4">

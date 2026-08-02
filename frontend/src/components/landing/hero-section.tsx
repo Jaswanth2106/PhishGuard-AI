@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Play, ShieldAlert, AlertTriangle, LinkIcon, FileBadge, CheckCircle, Fingerprint } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 const panelVariants = {
@@ -19,6 +20,8 @@ const itemVariants = {
 };
 
 export function HeroSection() {
+  const router = useRouter();
+
   return (
     <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 z-10">
       
@@ -49,12 +52,24 @@ export function HeroSection() {
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-          <Button size="lg" className="h-14 px-8 text-base bg-primary hover:bg-primary/90 shadow-xl shadow-primary/30 rounded-full w-full sm:w-auto">
+          <Button 
+            size="lg" 
+            className="h-14 px-8 text-base bg-primary hover:bg-primary/90 shadow-xl shadow-primary/30 rounded-full w-full sm:w-auto"
+            onClick={() => router.push('/signup')}
+          >
             Start Free Analysis
           </Button>
-          <Button size="lg" variant="outline" className="h-14 px-8 text-base glass hover:bg-white/5 rounded-full w-full sm:w-auto border-border/50 group">
+          <Button 
+            size="lg" 
+            variant="outline" 
+            className="h-14 px-8 text-base glass hover:bg-white/5 rounded-full w-full sm:w-auto border-border/50 group"
+            onClick={() => {
+              const el = document.getElementById('how-it-works');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             <Play className="w-4 h-4 mr-2 group-hover:text-primary transition-colors" />
-            Watch Demo
+            How It Works
           </Button>
         </div>
       </motion.div>

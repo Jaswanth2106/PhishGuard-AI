@@ -1,15 +1,56 @@
-import { ShieldAlert, Mail, Link as LinkIcon, FileBadge } from "lucide-react"
+"use client"
+
+import { useEffect, useState } from "react"
+import { ShieldAlert, Mail, Link as LinkIcon, FileBadge, Loader2 } from "lucide-react"
+
+type Scan = {
+  id: string
+  subject: string
+  prediction: string
+  created_at: string
+}
 
 export default function OverviewPage() {
+  const [scans, setScans] = useState<Scan[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchScans() {
+      try {
+        const res = await fetch("/api/history")
+        if (res.ok) {
+          const data = await res.json()
+          setScans(data)
+        }
+      } catch (err) {
+        console.error("Overview fetch error:", err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchScans()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    )
+  }
+
+  const totalScans = scans.length
+  const phishingScans = scans.filter(s => s.prediction === "phishing_or_spam").length
+  
   return (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {/* Metric Cards */}
         {[
-          { title: "Total Emails Scanned", value: "1,248", icon: Mail, color: "text-blue-500" },
-          { title: "Threats Detected", value: "24", icon: ShieldAlert, color: "text-destructive" },
-          { title: "Malicious URLs", value: "12", icon: LinkIcon, color: "text-orange-500" },
-          { title: "Dangerous Attachments", value: "4", icon: FileBadge, color: "text-purple-500" }
+          { title: "Total Emails Scanned", value: totalScans, icon: Mail, color: "text-blue-500" },
+          { title: "Threats Detected", value: phishingScans, icon: ShieldAlert, color: "text-destructive" },
+          { title: "Malicious URLs", value: "0", icon: LinkIcon, color: "text-orange-500" },
+          { title: "Dangerous Attachments", value: "0", icon: FileBadge, color: "text-purple-500" }
         ].map((metric, i) => (
           <div key={i} className="glass-card p-6 flex flex-col justify-center">
             <div className="flex items-center justify-between space-y-0 pb-2">
@@ -18,7 +59,7 @@ export default function OverviewPage() {
             </div>
             <div className="text-2xl font-bold">{metric.value}</div>
             <p className="text-xs text-muted-foreground mt-1">
-              +20% from last month
+              Live database metrics
             </p>
           </div>
         ))}
@@ -31,7 +72,7 @@ export default function OverviewPage() {
             <p className="text-sm text-muted-foreground">Scanned threat history for the last 30 days.</p>
           </div>
           <div className="h-[300px] w-full bg-background/50 rounded-lg flex items-center justify-center border border-border/50 border-dashed">
-            <span className="text-muted-foreground text-sm">Chart Placeholder</span>
+            <span className="text-muted-foreground text-sm">See Reports Dashboard for interactive charts</span>
           </div>
         </div>
         
@@ -41,20 +82,28 @@ export default function OverviewPage() {
             <p className="text-sm text-muted-foreground">Latest email analyses performed by the engine.</p>
           </div>
           <div className="space-y-4">
-            {[1, 2, 3, 4].map((item) => (
-              <div key={item} className="flex items-center justify-between p-3 rounded-lg bg-background/50 border border-border/50">
-                <div className="flex items-center gap-3">
-                  <div className={`w-2 h-2 rounded-full ${item === 1 ? 'bg-destructive' : 'bg-green-500'}`} />
-                  <div>
-                    <p className="text-sm font-medium">Invoice_Update.pdf</p>
-                    <p className="text-xs text-muted-foreground">2 mins ago</p>
+            {scans.slice(0, 4).map((item) => {
+              const isPhishing = item.prediction === "phishing_or_spam"
+              return (
+                <div key={item.id} className="flex items-center justify-between p-3 rounded-lg bg-background/50 border border-border/50">
+                  <div className="flex items-center gap-3 overflow-hidden">
+                    <div className={`w-2 h-2 rounded-full flex-shrink-0 ${isPhishing ? 'bg-destructive' : 'bg-emerald-500'}`} />
+                    <div className="truncate">
+                      <p className="text-sm font-medium truncate" title={item.subject}>{item.subject || "No Subject"}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {new Date(item.created_at).toLocaleDateString()}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={`flex-shrink-0 ml-2 text-xs font-medium px-2 py-1 rounded-full ${isPhishing ? 'bg-destructive/10 text-destructive' : 'bg-emerald-500/10 text-emerald-600'}`}>
+                    {isPhishing ? 'High Risk' : 'Safe'}
                   </div>
                 </div>
-                <div className="text-xs font-medium px-2 py-1 rounded-full bg-primary/10 text-primary">
-                  {item === 1 ? 'High Risk' : 'Safe'}
-                </div>
-              </div>
-            ))}
+              )
+            })}
+            {scans.length === 0 && (
+              <p className="text-sm text-muted-foreground text-center py-8">No recent scans.</p>
+            )}
           </div>
         </div>
       </div>

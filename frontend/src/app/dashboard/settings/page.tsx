@@ -4,19 +4,46 @@ import { useState } from "react"
 import { Bell, Key, Shield, Trash2, Save, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+type Settings = {
+  weeklyReports: boolean
+  criticalAlerts: boolean
+  autoScan: boolean
+  dataPrivacy: boolean
+}
+
 export default function SettingsPage() {
+  const [settings, setSettings] = useState<Settings>(() => {
+    if (typeof window !== "undefined") {
+      const savedSettings = localStorage.getItem("phishguard_settings")
+      if (savedSettings) {
+        return JSON.parse(savedSettings)
+      }
+    }
+    return {
+      weeklyReports: true,
+      criticalAlerts: true,
+      autoScan: false,
+      dataPrivacy: true
+    }
+  })
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState("")
 
   const handleSave = () => {
     setSaving(true)
     setMessage("")
-    // Mock save operation
+    
+    localStorage.setItem("phishguard_settings", JSON.stringify(settings))
+    
     setTimeout(() => {
       setSaving(false)
       setMessage("Settings saved successfully.")
       setTimeout(() => setMessage(""), 3000)
-    }, 1000)
+    }, 500)
+  }
+
+  const handleToggle = (key: keyof typeof settings) => {
+    setSettings(prev => ({ ...prev, [key]: !prev[key] }))
   }
 
   return (
@@ -43,7 +70,7 @@ export default function SettingsPage() {
                   <p className="text-sm font-medium">Production Key</p>
                   <p className="text-xs text-muted-foreground font-mono">pk_live_**********************</p>
                 </div>
-                <Button variant="outline" size="sm">Regenerate</Button>
+                <Button variant="outline" size="sm" onClick={() => alert("Key regeneration is disabled in demo mode.")}>Regenerate</Button>
               </div>
             </div>
           </div>
@@ -67,7 +94,7 @@ export default function SettingsPage() {
                     <p className="text-sm font-medium">Weekly Threat Reports</p>
                     <p className="text-xs text-muted-foreground">Receive a summary of scanned emails and threat trends.</p>
                   </div>
-                  <input type="checkbox" defaultChecked className="w-4 h-4 rounded border-primary text-primary focus:ring-primary" />
+                  <input type="checkbox" checked={settings.weeklyReports} onChange={() => handleToggle("weeklyReports")} className="w-4 h-4 rounded border-primary text-primary focus:ring-primary" />
                 </label>
 
                 <label className="flex items-center justify-between p-3 border border-border/50 rounded-lg hover:bg-muted/10 cursor-pointer transition-colors">
@@ -75,7 +102,7 @@ export default function SettingsPage() {
                     <p className="text-sm font-medium">Critical Alerts</p>
                     <p className="text-xs text-muted-foreground">Immediate email if a high-confidence phishing attempt is detected.</p>
                   </div>
-                  <input type="checkbox" defaultChecked className="w-4 h-4 rounded border-primary text-primary focus:ring-primary" />
+                  <input type="checkbox" checked={settings.criticalAlerts} onChange={() => handleToggle("criticalAlerts")} className="w-4 h-4 rounded border-primary text-primary focus:ring-primary" />
                 </label>
               </div>
             </div>
@@ -100,7 +127,7 @@ export default function SettingsPage() {
                     <p className="text-sm font-medium">Auto-Scan Incoming</p>
                     <p className="text-xs text-muted-foreground">Automatically scan emails forwarded to your PhishGuard inbox address.</p>
                   </div>
-                  <input type="checkbox" className="w-4 h-4 rounded border-primary text-primary focus:ring-primary" />
+                  <input type="checkbox" checked={settings.autoScan} onChange={() => handleToggle("autoScan")} className="w-4 h-4 rounded border-primary text-primary focus:ring-primary" />
                 </label>
 
                 <label className="flex items-center justify-between p-3 border border-border/50 rounded-lg hover:bg-muted/10 cursor-pointer transition-colors">
@@ -108,7 +135,7 @@ export default function SettingsPage() {
                     <p className="text-sm font-medium">Data Privacy</p>
                     <p className="text-xs text-muted-foreground">Allow anonymized metadata to be used to improve the ML model.</p>
                   </div>
-                  <input type="checkbox" defaultChecked className="w-4 h-4 rounded border-primary text-primary focus:ring-primary" />
+                  <input type="checkbox" checked={settings.dataPrivacy} onChange={() => handleToggle("dataPrivacy")} className="w-4 h-4 rounded border-primary text-primary focus:ring-primary" />
                 </label>
               </div>
             </div>
@@ -126,7 +153,7 @@ export default function SettingsPage() {
               <p className="text-sm text-muted-foreground">Irreversible actions regarding your account and data.</p>
               
               <div className="mt-4">
-                <Button variant="destructive" size="sm">
+                <Button variant="destructive" size="sm" onClick={() => alert("Account deletion is disabled in demo mode.")}>
                   Delete Account & All Data
                 </Button>
               </div>

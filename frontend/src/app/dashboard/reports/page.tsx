@@ -2,12 +2,11 @@
 
 import { useEffect, useState } from "react"
 import { ShieldAlert, ShieldCheck, Mail, AlertTriangle, TrendingUp, Activity, Loader2 } from "lucide-react"
-import { getSupabaseClient } from "@/lib/supabase-client"
 
 type Scan = {
   id: string
   prediction: string
-  confidence_score: number
+  confidence: number
   created_at: string
 }
 
@@ -18,13 +17,9 @@ export default function ReportsPage() {
   useEffect(() => {
     async function fetchScans() {
       try {
-        const supabase = getSupabaseClient()
-        const { data, error } = await supabase
-          .from("scans")
-          .select("id, prediction, confidence_score, created_at")
-          .order("created_at", { ascending: true })
-
-        if (!error && data) {
+        const res = await fetch("/api/history")
+        if (res.ok) {
+          const data = await res.json()
           setScans(data)
         }
       } catch (err) {
@@ -48,7 +43,7 @@ export default function ReportsPage() {
   const phishingScans = scans.filter(s => s.prediction === "phishing_or_spam").length
   const safeScans = totalScans - phishingScans
   const avgConfidence = totalScans > 0 
-    ? scans.reduce((acc, s) => acc + s.confidence_score, 0) / totalScans 
+    ? scans.reduce((acc, s) => acc + s.confidence, 0) / totalScans 
     : 0
 
   const phishingRate = totalScans > 0 ? (phishingScans / totalScans) * 100 : 0
