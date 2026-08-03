@@ -155,6 +155,44 @@ export default function LoginPage() {
           {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" /> : null}
           Sign In
         </Button>
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t border-muted-foreground/20" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-background px-2 text-muted-foreground">Or</span>
+          </div>
+        </div>
+        <Button 
+          type="button"
+          variant="outline"
+          className="w-full"
+          disabled={isLoading}
+          onClick={() => {
+            setEmail("jaswanthnaidunainala@gmail.com")
+            setPassword("testpassword123")
+            // The form will auto-submit on the next render if we had a dedicated submit function, but for now we can just fill it and let them click, or submit manually.
+            // Let's just do a manual submit block here.
+            setIsLoading(true)
+            const supabase = getSupabaseClient()
+            supabase.auth.signInWithPassword({ email: "jaswanthnaidunainala@gmail.com", password: "testpassword123" })
+              .then(({ error, data }) => {
+                if (error) {
+                  setMessage(friendlyAuthError(error.message))
+                } else if (!data.user?.email_confirmed_at) {
+                  supabase.auth.signOut()
+                  setMessage("Email not verified.")
+                } else {
+                  setMessage("Signed in as Demo User. Redirecting...")
+                  router.replace("/dashboard/overview")
+                }
+              })
+              .catch(() => setMessage("Network failure. Please try again."))
+              .finally(() => setIsLoading(false))
+          }}
+        >
+          Login as Demo User (Hackathon Judges)
+        </Button>
       </div>
       
       <div className="text-center text-sm">
