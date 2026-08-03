@@ -92,7 +92,7 @@ export class BackendApiError extends Error {
   }
 }
 
-const DEFAULT_TIMEOUT_MS = 10000
+const DEFAULT_TIMEOUT_MS = 60000
 
 export function backendBaseUrl() {
   return (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000").replace(/\/$/, "")
