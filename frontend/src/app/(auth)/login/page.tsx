@@ -169,13 +169,13 @@ export default function LoginPage() {
           className="w-full"
           disabled={isLoading}
           onClick={() => {
-            setEmail("jaswanthnaidunainala@gmail.com")
+            setEmail("demo@phishguard.com")
             setPassword("testpassword123")
             // The form will auto-submit on the next render if we had a dedicated submit function, but for now we can just fill it and let them click, or submit manually.
             // Let's just do a manual submit block here.
             setIsLoading(true)
             const supabase = getSupabaseClient()
-            supabase.auth.signInWithPassword({ email: "jaswanthnaidunainala@gmail.com", password: "testpassword123" })
+            supabase.auth.signInWithPassword({ email: "demo@phishguard.com", password: "testpassword123" })
               .then(({ error, data }) => {
                 if (error) {
                   setMessage(friendlyAuthError(error.message))
