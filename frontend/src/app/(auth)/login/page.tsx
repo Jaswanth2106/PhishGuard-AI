@@ -183,7 +183,7 @@ export default function LoginPage() {
                   supabase.auth.signOut()
                   setMessage("Email not verified.")
                 } else {
-                  setMessage("Signed in as Demo User. Redirecting...")
+                  setMessage("Signed in as Guest. Redirecting...")
                   router.replace("/dashboard/overview")
                 }
               })
@@ -191,7 +191,7 @@ export default function LoginPage() {
               .finally(() => setIsLoading(false))
           }}
         >
-          Login as Demo User (Hackathon Judges)
+          Login as Guest
         </Button>
       </div>
       
