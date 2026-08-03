@@ -354,10 +354,16 @@ export default function Page() {
       }
 
       const data = await response.json()
-      const extractedText = data.extractedText
+      const { subject: extractedSubject, body: extractedBody, extractedText } = data
 
-      if (extractedText && extractedText !== "No text found.") {
-        setBody((prev) => (prev ? `${prev}\n\n[Extracted via Gemini Vision]\n${extractedText}` : extractedText))
+      if (extractedSubject) {
+        setSubject((prev) => prev ? `${prev} ${extractedSubject}` : extractedSubject)
+      }
+
+      const bodyContent = extractedBody || extractedText || ""
+
+      if (bodyContent && bodyContent !== "No text found.") {
+        setBody((prev) => (prev ? `${prev}\n\n[Extracted via Gemini Vision]\n${bodyContent}` : bodyContent))
       } else {
         setBody((prev) => (prev ? `${prev}\n\n[Extracted via Gemini Vision]\nNo text could be extracted.` : "No text could be extracted."))
       }

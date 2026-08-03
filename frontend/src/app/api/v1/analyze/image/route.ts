@@ -23,9 +23,11 @@ export async function POST(request: Request) {
 
     const prompt = `You are a highly accurate OCR system for cybersecurity. 
 Please extract the exact text from this image. 
-If it is an email screenshot, extract the subject, sender, and the full body text.
-Format the output cleanly so it can be passed into a spam detection engine.
-Do not invent any text. If there is no text, reply with "No text found."`
+If it is an email screenshot, extract the subject and the full body text separately.
+Format the output as a clean JSON object with two keys: "subject" and "body".
+If you cannot identify a subject, leave it empty.
+Do not invent any text. If there is no text, return {"subject": "", "body": ""}.
+IMPORTANT: Return ONLY the JSON object, with no markdown code blocks or extra text.`
 
     const imagePart = {
       inlineData: {
@@ -57,7 +59,22 @@ Do not invent any text. If there is no text, reply with "No text found."`
       }
     }
 
-    return NextResponse.json({ extractedText: extractedText.trim() })
+    // Clean up potential markdown formatting from Gemini
+    console.log("Raw Gemini Response:", extractedText)
+    const cleanJson = extractedText.replace(/```json/g, '').replace(/```/g, '').trim()
+    
+    let subject = ""
+    let body = ""
+    try {
+      const parsed = JSON.parse(cleanJson)
+      subject = parsed.subject || ""
+      body = parsed.body || ""
+    } catch (e) {
+      // Fallback if not valid JSON
+      body = extractedText.trim()
+    }
+
+    return NextResponse.json({ subject, body, extractedText: body })
   } catch (error: unknown) {
     const err = error as { message?: string, status?: number };
     console.error("Gemini Vision OCR Error:", err?.message || error)
