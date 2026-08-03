@@ -1,4 +1,4 @@
-import Link from "next/link";
+// Link import removed
 import { Shield, Mail } from "lucide-react";
 
 export function Footer() {

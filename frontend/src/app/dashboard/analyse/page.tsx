@@ -261,8 +261,9 @@ export default function Page() {
              recommendedAction: "Try analyzing the email again later."
           })
         }
-      } catch (e: any) {
-        console.error("AI Explanation error:", e?.message || "Failed to connect to explanation service");
+      } catch (e: unknown) {
+        const err = e as { message?: string };
+        console.error("AI Explanation error:", err?.message || "Failed to connect to explanation service");
         setAiExplanation({
            riskLevel: "Medium",
            reasons: ["Failed to connect to the Gemini AI explanation service."],
@@ -340,7 +341,7 @@ export default function Page() {
         try {
           const errData = await response.json()
           errMessage = errData.error || errMessage
-        } catch (e) {
+        } catch {
           // ignore
         }
         
@@ -360,12 +361,13 @@ export default function Page() {
       } else {
         setBody((prev) => (prev ? `${prev}\n\n[Extracted via Gemini Vision]\nNo text could be extracted.` : "No text could be extracted."))
       }
-    } catch (err: any) {
-      console.error("OCR Error:", err.message || "Failed to process image")
+    } catch (err: unknown) {
+      const error = err as { message?: string };
+      console.error("OCR Error:", error.message || "Failed to process image")
       setError({
         kind: "unknown",
         title: "Image Upload Failed",
-        message: err.message || "Failed to extract text from the image. Please try again or paste text manually."
+        message: error.message || "Failed to extract text from the image. Please try again or paste text manually."
       })
     } finally {
       setIsOcrLoading(false)

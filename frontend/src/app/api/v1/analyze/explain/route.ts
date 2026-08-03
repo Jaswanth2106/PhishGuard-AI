@@ -48,8 +48,9 @@ export async function POST(request: Request) {
         const response = await result.response
         text = response.text()
         break; // Success
-      } catch (error: any) {
-        const isRateLimitOrUnavailable = error?.message?.includes("429") || error?.message?.includes("503") || error?.status === 429 || error?.status === 503;
+      } catch (error: unknown) {
+        const err = error as { message?: string, status?: number };
+        const isRateLimitOrUnavailable = err?.message?.includes("429") || err?.message?.includes("503") || err?.status === 429 || err?.status === 503;
         
         if (isRateLimitOrUnavailable && attempt < maxRetries) {
           const waitTime = Math.pow(2, attempt) * 1000;
@@ -66,10 +67,11 @@ export async function POST(request: Request) {
     const explanation = JSON.parse(cleanJson)
 
     return NextResponse.json(explanation)
-  } catch (error: any) {
-    console.error("Gemini Explain Error:", error?.message || error)
+  } catch (error: unknown) {
+    const err = error as { message?: string, status?: number };
+    console.error("Gemini Explain Error:", err?.message || error)
     
-    const isRateLimitOrUnavailable = error?.message?.includes("429") || error?.message?.includes("503") || error?.status === 429 || error?.status === 503;
+    const isRateLimitOrUnavailable = err?.message?.includes("429") || err?.message?.includes("503") || err?.status === 429 || err?.status === 503;
     
     if (isRateLimitOrUnavailable) {
        return NextResponse.json(

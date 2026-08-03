@@ -43,8 +43,9 @@ Do not invent any text. If there is no text, reply with "No text found."`
         const response = await result.response
         extractedText = response.text()
         break; // Success, break the loop
-      } catch (error: any) {
-        const isRateLimitOrUnavailable = error?.message?.includes("429") || error?.message?.includes("503") || error?.status === 429 || error?.status === 503;
+      } catch (error: unknown) {
+        const err = error as { message?: string, status?: number };
+        const isRateLimitOrUnavailable = err?.message?.includes("429") || err?.message?.includes("503") || err?.status === 429 || err?.status === 503;
         
         if (isRateLimitOrUnavailable && attempt < maxRetries) {
           const waitTime = Math.pow(2, attempt) * 1000;
@@ -57,10 +58,11 @@ Do not invent any text. If there is no text, reply with "No text found."`
     }
 
     return NextResponse.json({ extractedText: extractedText.trim() })
-  } catch (error: any) {
-    console.error("Gemini Vision OCR Error:", error?.message || error)
+  } catch (error: unknown) {
+    const err = error as { message?: string, status?: number };
+    console.error("Gemini Vision OCR Error:", err?.message || error)
     
-    const isRateLimitOrUnavailable = error?.message?.includes("429") || error?.message?.includes("503") || error?.status === 429 || error?.status === 503;
+    const isRateLimitOrUnavailable = err?.message?.includes("429") || err?.message?.includes("503") || err?.status === 429 || err?.status === 503;
     
     if (isRateLimitOrUnavailable) {
        return NextResponse.json(
