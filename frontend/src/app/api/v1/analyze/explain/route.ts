@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     
     // We can use gemini-1.5-flash for speed
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash",
+      model: "gemini-1.5-flash-latest",
       systemInstruction: "You are an expert cybersecurity AI. Your job is to analyze emails and explain phishing risks in a structured JSON format.",
       safetySettings: [
         {
