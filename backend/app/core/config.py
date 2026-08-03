@@ -13,8 +13,8 @@ class Settings(BaseSettings):
     LOG_LEVEL: str = "INFO"
 
     MODEL_VERSION: str = "2.6.0"
-    MODEL_PATH: Path = Path("app/ml_models/model.pkl")
-    VECTORIZER_PATH: Path = Path("app/ml_models/vectorizer.pkl")
+    MODEL_PATH: Path = Path("backend/app/ml_models/model.pkl")
+    VECTORIZER_PATH: Path = Path("backend/app/ml_models/vectorizer.pkl")
 
     DATABASE_URL: str = "sqlite:///backend/data/phishguard.db"
     JWT_SECRET_KEY: str = "change-this-secret-in-production"
