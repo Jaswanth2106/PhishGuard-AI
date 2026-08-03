@@ -11,10 +11,9 @@ export async function POST(request: Request) {
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
     
-    // We can use gemini-1.5-flash for speed
+    // We must use gemini-pro for maximum compatibility
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash-latest",
-      systemInstruction: "You are an expert cybersecurity AI. Your job is to analyze emails and explain phishing risks in a structured JSON format.",
+      model: "gemini-pro",
       safetySettings: [
         {
           category: HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -36,6 +35,7 @@ export async function POST(request: Request) {
     })
 
     const prompt = `
+    You are an expert cybersecurity AI. Your job is to analyze emails and explain phishing risks in a structured JSON format.
     Analyze this email based on the ML engine's prediction.
 
     Email Subject: ${subject}
