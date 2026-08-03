@@ -69,7 +69,7 @@ IMPORTANT: Return ONLY the JSON object, with no markdown code blocks or extra te
       const parsed = JSON.parse(cleanJson)
       subject = parsed.subject || ""
       body = parsed.body || ""
-    } catch (e) {
+    } catch {
       // Fallback if not valid JSON
       body = extractedText.trim()
     }

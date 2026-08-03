@@ -726,8 +726,9 @@ export default function Page() {
                 </Button>
               </div>
               {copyState === "failed" && <p className="text-sm text-destructive" role="alert">Clipboard access failed. Select and copy the details manually.</p>}
-            </div>
+            </motion.div>
           )}
+          </AnimatePresence>
         </aside>
       </section>
     </div>

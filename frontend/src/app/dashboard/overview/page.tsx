@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { ShieldAlert, Mail, Link as LinkIcon, FileBadge, Loader2 } from "lucide-react"
 
-const containerVariants = {
+const containerVariants: any = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -12,7 +12,7 @@ const containerVariants = {
   }
 }
 
-const itemVariants = {
+const itemVariants: any = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
 }

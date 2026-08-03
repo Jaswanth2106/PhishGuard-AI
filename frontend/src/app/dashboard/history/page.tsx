@@ -6,7 +6,7 @@ import { Loader2, Search, Trash2, ShieldAlert, CheckCircle2, FileText } from "lu
 
 import { Button } from "@/components/ui/button"
 
-const tableVariants = {
+const tableVariants: any = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -14,7 +14,7 @@ const tableVariants = {
   }
 }
 
-const rowVariants = {
+const rowVariants: any = {
   hidden: { opacity: 0, y: 10 },
   show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
 }
