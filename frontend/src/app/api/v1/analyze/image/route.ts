@@ -109,7 +109,7 @@ IMPORTANT: Return ONLY the JSON object, with no markdown code blocks or extra te
     }
 
     return NextResponse.json(
-      { error: "Failed to process image. Please try again." },
+      { error: `Gemini Error: ${err?.message || "Failed to process image"}` },
       { status: 500 }
     )
   }
