@@ -1,12 +1,12 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { motion, Variants } from "framer-motion"
 import { Loader2, Search, Trash2, ShieldAlert, CheckCircle2, FileText } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
-const tableVariants: any = {
+const tableVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -14,9 +14,9 @@ const tableVariants: any = {
   }
 }
 
-const rowVariants: any = {
+const rowVariants: Variants = {
   hidden: { opacity: 0, y: 10 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 300, damping: 24 } }
 }
 
 type Scan = {
