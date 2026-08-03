@@ -24,8 +24,8 @@ class Settings(BaseSettings):
     RATE_LIMIT_WINDOW: int = 60
 
     # BACKEND_CORS_ORIGINS is a JSON-formatted list of origins
-    # e.g: '["http://localhost", "http://localhost:3000"]'
-    BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
+    # e.g: '["http://localhost", "http://localhost:3000", "*"]'
+    BACKEND_CORS_ORIGINS: List[str] = []
 
     @field_validator("BACKEND_CORS_ORIGINS", mode="before")
     @classmethod
