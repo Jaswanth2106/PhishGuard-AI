@@ -1,9 +1,23 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { motion } from "framer-motion"
 import { Loader2, Search, Trash2, ShieldAlert, CheckCircle2, FileText } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+
+const tableVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.05 }
+  }
+}
+
+const rowVariants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+}
 
 type Scan = {
   id: string
@@ -98,12 +112,17 @@ export default function HistoryPage() {
                   <th className="px-6 py-4 font-medium text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border/50">
+              <motion.tbody 
+                className="divide-y divide-border/50"
+                variants={tableVariants}
+                initial="hidden"
+                animate="show"
+              >
                 {filteredScans.map((scan) => {
                   const isPhishing = scan.prediction === "phishing_or_spam"
                   
                   return (
-                    <tr key={scan.id} className="hover:bg-muted/20 transition-colors">
+                    <motion.tr variants={rowVariants} key={scan.id} className="hover:bg-muted/20 transition-colors">
                       <td className="px-6 py-4 font-medium text-foreground max-w-[300px] truncate" title={scan.subject}>
                         {scan.subject || "No Subject"}
                       </td>
@@ -134,10 +153,10 @@ export default function HistoryPage() {
                           <Trash2 className="h-4 w-4" />
                         </Button>
                       </td>
-                    </tr>
+                    </motion.tr>
                   )
                 })}
-              </tbody>
+              </motion.tbody>
             </table>
           </div>
         )}

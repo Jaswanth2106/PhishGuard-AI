@@ -52,25 +52,30 @@ export function HeroSection() {
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-          <Button 
-            size="lg" 
-            className="h-14 px-8 text-base bg-primary hover:bg-primary/90 shadow-xl shadow-primary/30 rounded-full w-full sm:w-auto"
-            onClick={() => router.push('/signup')}
-          >
-            Start Free Analysis
-          </Button>
-          <Button 
-            size="lg" 
-            variant="outline" 
-            className="h-14 px-8 text-base glass hover:bg-white/5 rounded-full w-full sm:w-auto border-border/50 group"
-            onClick={() => {
-              const el = document.getElementById('how-it-works');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            <Play className="w-4 h-4 mr-2 group-hover:text-primary transition-colors" />
-            How It Works
-          </Button>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+            <Button 
+              size="lg" 
+              className="h-14 px-8 text-base bg-primary hover:bg-primary/90 shadow-xl shadow-primary/30 rounded-full w-full"
+              onClick={() => router.push('/signup')}
+            >
+              Start Free Analysis
+            </Button>
+          </motion.div>
+          
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="h-14 px-8 text-base glass hover:bg-white/5 rounded-full w-full border-border/50 group shadow-lg"
+              onClick={() => {
+                const el = document.getElementById('how-it-works');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <Play className="w-4 h-4 mr-2 group-hover:text-primary transition-colors" />
+              How It Works
+            </Button>
+          </motion.div>
         </div>
       </motion.div>
 

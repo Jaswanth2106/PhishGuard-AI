@@ -11,9 +11,9 @@ export async function POST(request: Request) {
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
     
-    // We can use gemini-3.6-flash for speed
+    // We can use gemini-1.5-flash for speed
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-3.6-flash",
+      model: "gemini-1.5-flash",
       systemInstruction: "You are an expert cybersecurity AI. Your job is to analyze emails and explain phishing risks in a structured JSON format."
     })
 

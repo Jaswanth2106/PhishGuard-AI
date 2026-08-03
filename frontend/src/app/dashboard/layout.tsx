@@ -3,6 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
+import { motion, AnimatePresence } from "framer-motion"
 import { 
   LayoutDashboard, 
   ShieldAlert, 
@@ -22,9 +23,9 @@ const navigation = [
   { name: 'Overview', href: '/dashboard/overview', icon: LayoutDashboard },
   { name: 'Analyse', href: '/dashboard/analyse', icon: ShieldAlert },
   { name: 'History', href: '/dashboard/history', icon: History },
-  { name: 'Reports', href: '/dashboard/reports', icon: FileText },
+  { name: 'Reports', href: '/dashboard/reports', icon: FileText, comingSoon: true },
   { name: 'Chat', href: '/dashboard/chat', icon: MessageSquare },
-  { name: 'Settings', href: '/dashboard/settings', icon: Settings },
+  { name: 'Settings', href: '/dashboard/settings', icon: Settings, comingSoon: true },
 ]
 
 export default function DashboardLayout({
@@ -99,16 +100,25 @@ export default function DashboardLayout({
               return (
                 <Link
                   key={item.name}
-                  href={item.href}
+                  href={item.comingSoon ? '#' : item.href}
+                  onClick={(e) => { if (item.comingSoon) e.preventDefault(); }}
                   className={`
-                    flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all
+                    group flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5
+                    ${item.comingSoon ? 'opacity-60 cursor-not-allowed' : ''}
                     ${isActive 
-                      ? 'bg-primary text-primary-foreground shadow-md shadow-primary/20' 
-                      : 'text-muted-foreground hover:bg-primary/10 hover:text-foreground'}
+                      ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25 translate-x-1' 
+                      : 'text-muted-foreground hover:bg-primary/10 hover:text-foreground hover:shadow-md'}
                   `}
                 >
-                  <item.icon className={`mr-3 h-5 w-5 ${isActive ? 'text-primary-foreground' : 'text-primary/70'}`} aria-hidden="true" />
-                  {item.name}
+                  <div className="flex items-center">
+                    <item.icon className={`mr-3 h-5 w-5 transition-transform group-hover:scale-110 ${isActive ? 'text-primary-foreground' : 'text-primary/70'}`} aria-hidden="true" />
+                    {item.name}
+                  </div>
+                  {item.comingSoon && (
+                    <span className="text-[10px] uppercase font-bold tracking-wider bg-primary/20 text-primary px-2 py-0.5 rounded-full border border-primary/30">
+                      Soon
+                    </span>
+                  )}
                 </Link>
               )
             })}
@@ -169,11 +179,20 @@ export default function DashboardLayout({
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-4 z-10">
-          <div className="max-w-7xl mx-auto space-y-6">
-            {children}
-          </div>
-        </main>
+        <div className="flex-1 overflow-y-auto p-4 z-10 overflow-x-hidden">
+          <AnimatePresence mode="wait">
+            <motion.main 
+              key={pathname}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="max-w-7xl mx-auto space-y-6"
+            >
+              {children}
+            </motion.main>
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   )

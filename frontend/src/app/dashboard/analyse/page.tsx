@@ -1,6 +1,7 @@
 "use client"
 
 import { FormEvent, useMemo, useRef, useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import {
   AlertTriangle,
   Check,
@@ -595,63 +596,68 @@ export default function Page() {
             </div>
           )}
 
-          {!isLoading && result && tone && (
-            <div className="mt-6 space-y-5">
-              <div className={`rounded-lg border p-4 ${tone.panel}`}>
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="rounded-lg bg-background/70 p-2">
-                      {result.prediction === "phishing_or_spam" ? <ShieldAlert className={`h-5 w-5 ${tone.text}`} aria-hidden="true" /> : <CheckCircle2 className={`h-5 w-5 ${tone.text}`} aria-hidden="true" />}
+          <AnimatePresence mode="wait">
+            {!isLoading && result && tone && (
+              <motion.div 
+                key="result-block"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="mt-6 space-y-5"
+              >
+                <div className={`rounded-lg border p-4 shadow-xl ${tone.panel}`}>
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="rounded-lg bg-background/70 p-2 shadow-inner">
+                        {result.prediction === "phishing_or_spam" ? <ShieldAlert className={`h-5 w-5 ${tone.text}`} aria-hidden="true" /> : <CheckCircle2 className={`h-5 w-5 ${tone.text}`} aria-hidden="true" />}
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-wider font-bold text-muted-foreground">Prediction</p>
+                        <p className={`text-xl font-semibold ${tone.text}`}>{riskLabel(result)}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-xs uppercase text-muted-foreground">Prediction</p>
-                      <p className={`text-xl font-semibold ${tone.text}`}>{riskLabel(result)}</p>
+                    <div className="text-left sm:text-right">
+                      <p className="text-xs uppercase tracking-wider font-bold text-muted-foreground">Confidence</p>
+                      <p className={`text-2xl font-bold ${tone.text}`}>{formatPercent(result.confidence_score)}</p>
                     </div>
                   </div>
-                  <div className="text-left sm:text-right">
-                    <p className="text-xs uppercase text-muted-foreground">Confidence</p>
-                    <p className={`text-2xl font-semibold ${tone.text}`}>{formatPercent(result.confidence_score)}</p>
+  
+                  <div className="mt-4" aria-label={`Confidence score ${formatPercent(result.confidence_score)}`}>
+                    <div className="mb-2 flex items-center justify-between text-xs text-muted-foreground font-medium">
+                      <span>{tone.label}</span>
+                      <span>{confidencePercent}%</span>
+                    </div>
+                    <div
+                      className="h-3 overflow-hidden rounded-full bg-background/70 shadow-inner"
+                      role="progressbar"
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      aria-valuenow={confidencePercent}
+                    >
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        animate={{ width: `${confidencePercent}%` }}
+                        transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+                        className={`h-full rounded-full transition-all ${tone.bar}`} 
+                      />
+                    </div>
                   </div>
                 </div>
-
-                <div className="mt-4" aria-label={`Confidence score ${formatPercent(result.confidence_score)}`}>
-                  <div className="mb-2 flex items-center justify-between text-xs text-muted-foreground">
-                    <span>{tone.label}</span>
-                    <span>{confidencePercent}%</span>
-                  </div>
-                  <div
-                    className="h-3 overflow-hidden rounded-full bg-background/70"
-                    role="progressbar"
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-valuenow={confidencePercent}
+  
+                {isAiExplaining ? (
+                  <motion.div 
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                    className="rounded-lg border border-border/60 bg-muted/30 p-6 text-center shadow-lg"
                   >
-                    <div className={`h-full rounded-full transition-all ${tone.bar}`} style={{ width: `${confidencePercent}%` }} />
-                  </div>
-                </div>
-              </div>
-
-              {isAiExplaining ? (
-                <div className="rounded-lg border border-border/60 bg-muted/30 p-6 text-center">
-                  <Loader2 className="mx-auto h-8 w-8 animate-spin text-primary" />
-                  <p className="mt-4 text-sm font-medium">Gemini AI is analyzing the results...</p>
-                </div>
-              ) : (
-                <AiExplanationPanel explanation={aiExplanation} />
-              )}
+                    <Loader2 className="mx-auto h-8 w-8 animate-spin text-primary" />
+                    <p className="mt-4 text-sm font-medium">Gemini AI is analyzing the results...</p>
+                  </motion.div>
+                ) : (
+                  <AiExplanationPanel explanation={aiExplanation} />
+                )}
 
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-                <div className="rounded-lg border border-border/60 bg-background/60 p-4">
-                  <p className="text-xs uppercase text-muted-foreground">Confidence Score</p>
-                  <p className={`mt-1 text-2xl font-semibold ${tone.text}`}>{formatPercent(result.confidence_score)}</p>
-                </div>
-                <div className="rounded-lg border border-border/60 bg-background/60 p-4">
-                  <p className="text-xs uppercase text-muted-foreground">Probability-like Score</p>
-                  <p className={`mt-1 text-2xl font-semibold ${probabilityTone(result.probability_like_score)}`}>{formatPercent(result.probability_like_score)}</p>
-                  <div className="mt-3 h-2 overflow-hidden rounded-full bg-muted" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={probabilityPercent}>
-                    <div className="h-full rounded-full bg-primary" style={{ width: `${probabilityPercent}%` }} />
-                  </div>
-                </div>
               </div>
 
               <div className="rounded-lg border border-border/60 bg-background/60 p-4">
